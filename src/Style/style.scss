@@ -1,0 +1,13 @@
+$white : rgb(239, 243, 243);
+$light :rgb(192, 221, 221);
+
+.navLink{
+    text-decoration: none;
+    color:black;
+    .btn{
+        font-weight: 400;
+        color:$white;
+        text-shadow: 0px 0px 1px $light;
+    }
+    
+}

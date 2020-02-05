@@ -1,0 +1,19 @@
+main{
+    min-height: 80vh;
+}
+footer{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: rgb(6, 5, 8);
+    color:white;
+    font-size: .8rem;
+    .footer_contacts{
+        display: flex;
+        flex-flow: column;
+        text-align: right;
+        line-height: 1vh;
+        margin-right:2vh;
+    }
+}
