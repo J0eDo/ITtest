@@ -13,6 +13,8 @@ import { MenuBadge } from '../../Style/elements'
 import { NavLink } from "react-router-dom";
 import './navMenu.scss'
 import AuthPanel from '../AuthorizationPanel'
+import LoginIcon from '@material-ui/icons/ExitToApp';
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -91,7 +93,7 @@ export default function NavMenu() {
               onClick={handleMenu}
               color="inherit"
             >
-              <AccountCircle />
+            {isAuth?<AccountCircle />:<LoginIcon/>}
             </IconButton>
             <Menu
               id="menu-appbar"

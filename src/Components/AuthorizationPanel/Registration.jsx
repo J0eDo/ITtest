@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux'
 //API
-import { registrated } from '../../API/profile'
+import { registration } from '../../API/profile'
 //UI
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { axios } from '../../API/Axios';
+
 
 const useStyles = makeStyles(theme => ({
     error_auth: {
@@ -27,24 +27,6 @@ function App() {
     const setLogin = useCallback(
         () => dispatch({ type: "SET_AUTH_MODE", mode: 2 }),
         [dispatch])
-/*     let registration = () => {
-        const login = "aaaaa"
-        const password = "123455"
-        const username = "Helllouu"
-        const loadData = async () => {
-            const response = await axios.get('/registration', {
-                params: {
-                    login, password, username
-                }
-            })
-        }
-        loadData()
-    } */
-
-    let registration = () =>{
-        dispatch({type:'AUTH'})
-        dispatch({type: "SET_AUTH_MODE", mode:null })
-    }
 
     return (
         <React.Fragment>
@@ -58,11 +40,12 @@ function App() {
             <TextField id="password" label="Password" type="password" variant="outlined" />
             <p className={classes.error_auth}
                 id="password_error" />
+            <p id='errorReg'></p>
             <p className={classes.login_link}
                 onClick={setLogin}
             >Есть аккаунт!</p>
             <Button
-                onClick={registration}
+                onClick={() => registration(dispatch)}
                 variant="contained" color="primary">Зарегистрироваться</Button>
         </React.Fragment>
     );

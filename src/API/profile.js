@@ -1,25 +1,41 @@
-import { axios, REGISTR } from './Axios'
+import { axios, REGISTRATION, LOGIN } from './Axios'
+import { showErrorRegistration, showErrorLogin } from '../until/ErrorAuth'
 
-export const registrated = props => dispatch => {
-    const { password, username, email } = props
-    axios.get(REGISTR, {
-        params: {
-            password, username, email
-        }
-    })
-        .then((res) => {
-            alert("OK")
-            if (res.data.accessToken) {
-                const token = 'Bearer ' + res.data.accessToken.token
-                axios.defaults.headers.common["Authorization"] = token
-                localStorage.setItem("TOKEN", token)
-                localStorage.setItem("WS_TOKEN", res.data.accessToken.token)
-                dispatch({ type: "LOGIN", token: token })
-            } else {
-                const { field, validation } = res.data[0] || res.data
-                dispatch({ type: "ERROR_REGISTRATED", errorReg: { field, validation } })
+export const registration = dispatch => {
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+    const username = document.getElementById('username').value
+
+    const registrated = async () => {
+        await axios.get(REGISTRATION, {
+            params: {
+                email, password, username
             }
-        }).catch(() => {
-            alert("False")
+        }).then((response) => {
+            const token = 'Bearer ' + response.data.accessToken.token
+            dispatch({ type: 'AUTH', token })
+        }).catch((error) => {
+            showErrorRegistration(error.data[0])
         })
+    }
+    registrated()
+}
+
+
+export const login = dispatch => {
+    const email = document.getElementById('email').value
+    const password = document.getElementById('password').value
+
+    const logined = async () => {
+        console.log(email, password);
+        await axios.get(LOGIN, {
+            params: {
+                email, password
+            }
+        }).then((response) => {
+            const token = 'Bearer ' + response.data.token
+            dispatch({ type: 'AUTH', token })
+        }).catch(() => showErrorLogin())
+    }
+    logined()
 }

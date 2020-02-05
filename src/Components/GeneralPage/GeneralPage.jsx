@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
 function GeneralPage() {
     const classes = useStyles();
     const [title, setTitle] = useState('')
-
     useEffect(() => textShower(titleSite,setTitle), [])
     return (
         <div className={classes.root}>

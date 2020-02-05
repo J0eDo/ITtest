@@ -1,9 +1,7 @@
-import { SET_AUTH_MODE } from './actionNames'
-const defaultState = {
-    mode: null
-}
+import {setJWT,removeJWT} from '../API/Axios'
 
-const auth = (state = defaultState, action) => {
+
+const auth = (state, action) => {
     let newState = { ...state }
     switch (action.type) {
         case "SET_AUTH_MODE":
@@ -11,9 +9,12 @@ const auth = (state = defaultState, action) => {
             return newState
         case "AUTH":
             newState.isAuth = true
+            newState.mode = null
+            setJWT(action.token)
             return newState
         case "UNAUTHORIZATED":
             newState.isAuth = false
+            removeJWT()
             return newState
         default:
             return newState

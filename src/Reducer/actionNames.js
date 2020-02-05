@@ -1,1 +1,0 @@
-export const SET_AUTH_MODE = "SET_AUTH_MODE"

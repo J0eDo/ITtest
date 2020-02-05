@@ -7,5 +7,11 @@ import auth from './auth'
 const reducer = combineReducers({
     auth
 })
-
-export const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const defaultState = () => {
+    if (localStorage.getItem('token')) {
+        return {
+            auth: { isAuth: true }
+        }
+    }
+}
+export const store = createStore(reducer, defaultState(), composeWithDevTools(applyMiddleware(thunk)));
