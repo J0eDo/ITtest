@@ -1,5 +1,5 @@
 //Libarys
-import React from 'react'
+import React, { useSelector, useEffect } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -14,18 +14,21 @@ import NavMenu from '../NavMenu/NavMenu'
 import GeneralPage from '../GeneralPage/GeneralPage'
 import Profile from '../Profile/Profile'
 import TestsList from '../TestPage/TestsList'
+import AdminPage from '../Admin'
+
 
 
 
 function App() {
-    return (<ThemeProvider theme ={theme}>
+    return (<ThemeProvider theme={theme}>
         <Router >
-            <NavMenu/>
+            <NavMenu />
             <main className="app">
                 <Switch>
                     <Route exact path="/" component={GeneralPage} />
                     <Route exact path="/tests" component={TestsList} />
                     <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/admin" component={AdminPage} />
                 </Switch>
             </main>
             <footer>

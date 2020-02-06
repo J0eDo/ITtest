@@ -1,4 +1,4 @@
-import {setJWT,removeJWT} from '../API/Axios'
+import { setJWT, removeJWT, defaultJWT } from '../API/Axios'
 
 
 const auth = (state, action) => {
@@ -13,10 +13,15 @@ const auth = (state, action) => {
             setJWT(action.token)
             return newState
         case "UNAUTHORIZATED":
-            newState.isAuth = false
             removeJWT()
-            return newState
+            return {}
+        case "GET_PROFILE":
+            return newState = {
+                ...state,
+                ...action.payload
+            }
         default:
+            defaultJWT()
             return newState
     }
 }

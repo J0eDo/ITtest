@@ -1,6 +1,13 @@
-import React from 'react';
+//Libarys
+import React ,{useEffect}from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { createPortal } from 'react-dom'
+import { NavLink } from "react-router-dom";
+//HOC
+import admin from '../HOC/Admin'
+//API
+import { getUserData } from '../../API/profile'
+//UI
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,10 +17,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { MenuBadge } from '../../Style/elements'
-import { NavLink } from "react-router-dom";
 import './navMenu.scss'
-import AuthPanel from '../AuthorizationPanel'
 import LoginIcon from '@material-ui/icons/ExitToApp';
+//Components
+import AuthPanel from '../AuthorizationPanel'
 
 
 const useStyles = makeStyles(theme => ({
@@ -32,9 +39,17 @@ export default function NavMenu() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  const isAuth = useSelector(state => state.auth.isAuth)
   const dispatch = useDispatch()
   const modeAuth = useSelector(state => state.auth.mode)
+  const isAuth = useSelector(state => state.auth.isAuth)
+  const accessLevel = useSelector(state => state.auth.access)
+
+  useEffect(() => {
+    if (isAuth) {
+      getUserData(dispatch)
+    }
+  }, [])
+
 
   const handleMenu = event => {
     setAnchorEl(event.currentTarget);
@@ -51,7 +66,7 @@ export default function NavMenu() {
 
   function openAuthWindow(mode) {
     handleClose()
-    dispatch({type: "SET_AUTH_MODE", mode })
+    dispatch({ type: "SET_AUTH_MODE", mode })
   }
 
   const authProfileMenuItem = () => (
@@ -66,15 +81,17 @@ export default function NavMenu() {
   )
   const noAuthProfileMenuItem = () => (
     <div>
-      <MenuItem onClick={()=>openAuthWindow(2)}>Войти</MenuItem>
-      <MenuItem onClick={()=>openAuthWindow(1)}>Регистрация</MenuItem>
+      <MenuItem onClick={() => openAuthWindow(2)}>Войти</MenuItem>
+      <MenuItem onClick={() => openAuthWindow(1)}>Регистрация</MenuItem>
     </div>
   )
 
   function authWindow(state) {
-    if(state)
-      return createPortal(<AuthPanel/>, document.getElementById('second'))
+    if (state)
+      return createPortal(<AuthPanel />, document.getElementById('second'))
   }
+
+  const adminBar =()=> MenuBadge("Администрация", "/admin")
 
   return (
     <div className={classes.root}>
@@ -84,6 +101,7 @@ export default function NavMenu() {
             IT-test
           </Typography>
           <div>
+            {admin(adminBar,accessLevel)}
             {MenuBadge("Главная", "/")}
             {MenuBadge("Тесты", "/tests")}
             <IconButton
@@ -93,7 +111,7 @@ export default function NavMenu() {
               onClick={handleMenu}
               color="inherit"
             >
-            {isAuth?<AccountCircle />:<LoginIcon/>}
+              {isAuth ? <AccountCircle /> : <LoginIcon />}
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -111,8 +129,8 @@ export default function NavMenu() {
               onClose={handleClose}
             >
               {
-                isAuth ? authProfileMenuItem(null, handleClose) :
-                  noAuthProfileMenuItem(null, handleClose)
+                isAuth ? authProfileMenuItem() :
+                  noAuthProfileMenuItem()
               }
             </Menu>
           </div>

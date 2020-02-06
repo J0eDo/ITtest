@@ -7,13 +7,21 @@ export const axios = Axios.create({
 //Route
 export const REGISTRATION = '/registration'
 export const LOGIN = '/login'
+export const ACCOUNT_INFO = '/accountInfo'
 
 //Manage Auth
-export const setJWT = (token) =>{
+export const setJWT = (token) => {
+
     axios.defaults.headers.common["Authorization"] = token
     localStorage.setItem('token', token)
 }
-export const removeJWT = ()=>{
-    axios.defaults.headers.common["Authorization"] = null
+export const removeJWT = () => {
+    axios.defaults.headers.common["Authorization"] = undefined
     localStorage.removeItem('token')
+}
+export const defaultJWT = () => {
+    const token = localStorage.getItem('token')
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = token
+    }
 }

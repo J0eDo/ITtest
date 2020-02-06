@@ -1,4 +1,7 @@
-import { axios, REGISTRATION, LOGIN } from './Axios'
+import {
+    axios, REGISTRATION,
+    LOGIN, ACCOUNT_INFO
+} from './Axios'
 import { showErrorRegistration, showErrorLogin } from '../until/ErrorAuth'
 
 export const registration = dispatch => {
@@ -12,10 +15,16 @@ export const registration = dispatch => {
                 email, password, username
             }
         }).then((response) => {
-            const token = 'Bearer ' + response.data.accessToken.token
-            dispatch({ type: 'AUTH', token })
+            if (response.data.accessToken) {
+                const token = 'Bearer ' + response.data.accessToken.token
+                dispatch({ type: 'AUTH', token })
+                getUserData(dispatch)
+            } else {
+                showErrorRegistration(response.data[0])
+            }
         }).catch((error) => {
-            showErrorRegistration(error.data[0])
+            console.log(error);
+            //ServerError
         })
     }
     registrated()
@@ -27,7 +36,6 @@ export const login = dispatch => {
     const password = document.getElementById('password').value
 
     const logined = async () => {
-        console.log(email, password);
         await axios.get(LOGIN, {
             params: {
                 email, password
@@ -35,7 +43,22 @@ export const login = dispatch => {
         }).then((response) => {
             const token = 'Bearer ' + response.data.token
             dispatch({ type: 'AUTH', token })
+            getUserData(dispatch)
         }).catch(() => showErrorLogin())
     }
     logined()
+}
+
+export const getUserData = async (dispatch) => {
+    const getData = async () => {
+        await axios.get(ACCOUNT_INFO)
+        .then((response) => {
+           dispatch({type:"GET_PROFILE", payload:response.data.userData})          
+        })
+        .catch((error) => {
+            //Catch is work
+            console.log(error,"ERROR");
+        })
+    }
+    getData()
 }
