@@ -1,5 +1,5 @@
 //Libarys
-import React ,{useEffect}from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { NavLink } from "react-router-dom";
@@ -76,7 +76,10 @@ export default function NavMenu() {
           Профиль
         </NavLink>
       </MenuItem>
-      <MenuItem onClick={exitAccount}>Выйти</MenuItem>
+      <MenuItem onClick={exitAccount}>
+        <NavLink to='/' className='navLink'>
+          Выйти
+        </NavLink></MenuItem>
     </div>
   )
   const noAuthProfileMenuItem = () => (
@@ -91,17 +94,17 @@ export default function NavMenu() {
       return createPortal(<AuthPanel />, document.getElementById('second'))
   }
 
-  const adminBar =()=> MenuBadge("Администрация", "/admin")
+  const adminBar = () => MenuBadge("Администрация", "/admin")
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h3" className={classes.title}>
             IT-test
           </Typography>
           <div>
-            {admin(adminBar,accessLevel)}
+            {admin(adminBar, accessLevel)}
             {MenuBadge("Главная", "/")}
             {MenuBadge("Тесты", "/tests")}
             <IconButton

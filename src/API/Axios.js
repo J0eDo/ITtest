@@ -8,10 +8,14 @@ export const axios = Axios.create({
 export const REGISTRATION = '/registration'
 export const LOGIN = '/login'
 export const ACCOUNT_INFO = '/accountInfo'
+//Administrator
+export const GET_USERS = '/getUsers'
+export const GET_TESTS = '/getTests'
+export const GET_ANSWERS = '/getAnswers'
+
 
 //Manage Auth
 export const setJWT = (token) => {
-
     axios.defaults.headers.common["Authorization"] = token
     localStorage.setItem('token', token)
 }

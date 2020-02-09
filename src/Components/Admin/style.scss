@@ -1,0 +1,20 @@
+.tableConteiner{
+    display: flex;
+    table{
+        margin:0 1rem;
+        background-color: blanchedalmond;
+    }
+}
+.rb_option{
+    display: flex;
+    flex-flow: row wrap;
+    p{
+        margin: 0 2rem;
+    }
+}
+.filterForm{
+    margin: 1rem;
+    *{
+        margin: .5rem;
+    }
+}

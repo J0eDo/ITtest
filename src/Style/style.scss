@@ -9,5 +9,10 @@ $light :rgb(192, 221, 221);
         color:$white;
         text-shadow: 0px 0px 1px $light;
     }
-    
+}
+
+.infoCard{
+    margin: 1rem;
+    padding: 1rem;
+    min-height: 10vh;
 }
