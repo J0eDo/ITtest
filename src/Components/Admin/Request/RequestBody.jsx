@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { selects } from '../../../Style/elements'
+import { Selects } from '../../../Style/elements'
 import requestFilterForm from './RequestFilterForm'
 
 
@@ -12,13 +12,12 @@ export default function RequestBody() {
         dataType,
         setDataHandler,
         items: ['users', 'answers', 'tests'],
-        selectID : 'selectDataType'
+        selectID: 'selectDataType'
     }
     return (
         <div>
             <div className="rb_option">
-                <p>DataType:</p>
-                {selects(selectProps)}
+                <p>DataType:</p> {Selects(selectProps)}
             </div>
             {requestFilterForm(dataType)}
         </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { selects } from '../../../Style/elements'
+import { Selects } from '../../../Style/elements'
 import { getDataWithFilter } from '../../../API/adminisrator'
 
 function FilterForm(data) {
@@ -42,8 +42,9 @@ function FilterForm(data) {
         })
         body.filter = dataType
         body.dataBaseName = data.dataBaseName
+        dispatch({ type: "CHANGE_DATA_TYPE", dataType: data.dataBaseName })
         runRequest(body)
-
+      
 
     }
 
@@ -61,7 +62,7 @@ function FilterForm(data) {
                     />
                 ))}
                 {
-                    selects(selectProps)
+                    Selects(selectProps)
                 }
             </div>
             <Button variant="outlined" color="primary"

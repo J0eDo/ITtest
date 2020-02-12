@@ -4,11 +4,10 @@ import './style.scss'
 import Badge from '@material-ui/core/Badge';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper'
-import TextField from '@material-ui/core/TextField'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 
-//NavMenu
+
 export const MenuBadge = (title, link) => (
     <Badge className="bar_element" color="primary">
         <NavLink to={link} className='navLink'>
@@ -23,12 +22,11 @@ export const InfoCard = (Component) => (
     </Paper>
 )
 
-export const selects = (prop) => (
+export const Selects = (prop) => (
     <Select
         style={{
             minWidth: '13rem',
         }}
-        /*   labelId="demo-simple-select-label" */
         id={prop.selectID}
         value={prop.dataType}
         onChange={prop.setDataHandler}

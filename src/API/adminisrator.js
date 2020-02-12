@@ -11,7 +11,7 @@ export let getDataWithFilter = dispatch => data => {
     const getData = () => {
         switch (data.dataBaseName) {
             case 'users':
-                route=GET_USERS
+                route = GET_USERS
                 break;
             case 'answers':
                 route = GET_ANSWERS
@@ -31,9 +31,7 @@ export let getDataWithFilter = dispatch => data => {
             }
         })
             .then((response) => {
-                console.log(response);
-                /* 
-                dispatch({ type: "GET_PROFILE", payload: response.data.userData }) */
+                dispatch({ type: "SET_TABLE_DATA", tableData: response.data, table:data.dataBaseName })
             })
             .catch((error) => {
                 console.log(error, "ERROR");

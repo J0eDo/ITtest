@@ -1,8 +1,5 @@
 import React from 'react'
 import FilterForm from './RequestFilter'
-import { Checkbox } from '@material-ui/core'
-
-const typeInput = { textField: 'textField', checkBox: 'checkBox' }
 
 const elementsUser = {
     textFields: [
