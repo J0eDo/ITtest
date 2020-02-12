@@ -12,7 +12,8 @@ export const ACCOUNT_INFO = '/accountInfo'
 export const GET_USERS = '/getUsers'
 export const GET_TESTS = '/getTests'
 export const GET_ANSWERS = '/getAnswers'
-
+export const BANED_UNBANED = '/userSuccess'
+export const REMOVE_USER = '/userRemove'
 
 //Manage Auth
 export const setJWT = (token) => {

@@ -15,11 +15,14 @@ export default function TableRemotePanel(props) {
             return createPortal(null, document.getElementById('second'))
         }
     }
-    function openDialog(action, id) {
-        console.log(action,id,"AAAAAAAAA");
-        
-        setDialogOptions(true)
-        setDialogData({ action, id })
+
+    function enterAction(action, id, isDialog) {
+        if (isDialog) {
+            setDialogOptions(true)
+            setDialogData({ action, id })
+        }else{
+            console.log("open chtoto");
+        }
     }
     const closeDialog = () => {
         setDialogOptions(false)
@@ -29,7 +32,7 @@ export default function TableRemotePanel(props) {
             {
                 buttons.map(Element => (
                     <Button
-                        onClick={()=>openDialog(Element.id, selectedID)}
+                        onClick={() => enterAction(Element.id, selectedID, Element.withDialog)}
                         disabled={!(Element.alwaysActiv || selectedID)}
                         key={Element.id}>{Element.label}</Button>
                 ))

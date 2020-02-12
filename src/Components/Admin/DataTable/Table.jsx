@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function EnhancedTable(props) {
   const toolbarOption = props.option.toolbarOption
-  const columns = props.option.tableHeaderOption.columns
+  const columns = props.option.columns
   let buttonOption = props.option.remote
 
 
@@ -149,8 +149,6 @@ export default function EnhancedTable(props) {
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow
                       hover
@@ -159,9 +157,7 @@ export default function EnhancedTable(props) {
                       tabIndex={-1}
                       key={row.id}
                     >
-                      <TableCell padding="checkbox">
-                      </TableCell>
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
+                      <TableCell component="th" scope="row" padding="checkbox">
                         {row.id}
                       </TableCell>
                       <TableCell align="right">{row.column2}</TableCell>

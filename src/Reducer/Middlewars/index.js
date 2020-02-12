@@ -1,10 +1,11 @@
-function createFormat(id, column2, column3, column4, column5) {
+function createFormatUser(id, column2, column3, column4, column5) {
     return { id, column2, column3, column4, column5 };
 }
 
+
 export const formatTable = store => next => action => {
     switch (action.type) {
-        case "SET_TABLE_DATA":
+        case "SET_TABLE_DATA":      
             action = normalizeDataAdminTable(action)
             break;
         default:
@@ -20,9 +21,17 @@ function normalizeDataAdminTable(action){
     switch (table) {
         case 'users':
             data.forEach(element => {
-                const { id, username, email, success } = element
+                let { id, username, email, success } = element
+                if(success===0){
+                    success = "baned"
+                }else if(success==1){
+                    success = "user"
+                }else{
+                    success = "admin"
+                }
+                
                 const rank = element.profile.rank
-                payload.push(createFormat(id, username, email, success, rank))
+                payload.push(createFormatUser(id, username, email, success, rank))
             });
             action.tableData = payload
             break;
@@ -30,7 +39,7 @@ function normalizeDataAdminTable(action){
             data.forEach(element => {
                 const { id, username, email, success } = element
                 const rank = element.profile.rank
-                payload.push(createFormat(id, username, email, success, rank))
+                payload.push(createFormatUser(id, username, email, success, rank))
             });
             action.tableData = payload
             break;
@@ -38,7 +47,7 @@ function normalizeDataAdminTable(action){
             data.forEach(element => {
                 const { id, username, email, success } = element
                 const rank = element.profile.rank
-                payload.push(createFormat(id, username, email, success, rank))
+                payload.push(createFormatUser(id, username, email, success, rank))
             });
             action.tableData = payload
              break;

@@ -15,8 +15,6 @@ function TableHeader(props) {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-          </TableCell>
           {columns.map(headCell => (
             <TableCell
               key={headCell.id}

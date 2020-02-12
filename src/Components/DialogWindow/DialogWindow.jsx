@@ -25,7 +25,7 @@ export default function AlertDialog(props) {
     const handleAgree = () => {
         setOpen(false);
         closed()
-        
+        dialogBody.handler(dispatch,data.id)
     };
 
 
