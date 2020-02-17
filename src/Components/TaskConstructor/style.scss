@@ -1,0 +1,12 @@
+.remotePanel{
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    .remotePanel_first{
+        flex-grow: 5;
+    }
+}
+.rowVariant{
+    display: flex;
+    width: 100%;
+}

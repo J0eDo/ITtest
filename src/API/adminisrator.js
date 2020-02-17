@@ -1,29 +1,18 @@
 import {
     axios,
-    GET_USERS,
-    GET_TESTS,
-    GET_ANSWERS,
+    GET_DATA_BY_NAME,
     BANED_UNBANED,
-    REMOVE_USER
+    REMOVE_USER,
+    REMOVE_DATA_BY_ID,
+    dataBaseNameOnServer
 } from './Axios'
 import qs from 'querystring'
 
 export let getDataWithFilter = dispatch => data => {
-    let route;
     const getData = () => {
-        switch (data.dataBaseName) {
-            case 'users':
-                route = GET_USERS
-                break;
-            case 'answers':
-                route = GET_ANSWERS
-                break;
-            case 'tests':
-                route = GET_TESTS
-                break;
-        }
+        data.dataBaseName = dataBaseNameOnServer[data.dataBaseName]
         let fields = qs.stringify(data.fields)
-        axios.get(route, {
+        axios.get(GET_DATA_BY_NAME, {
             params: {
                 ...data,
                 fields
@@ -33,7 +22,7 @@ export let getDataWithFilter = dispatch => data => {
                 dispatch({ type: "SET_TABLE_DATA", tableData: response.data, table: data.dataBaseName })
             })
             .catch((error) => {
-                console.log(error, "ERROR");
+                dispatch({ type: "ADD_NOTIFICATION", message: error.data })
             })
     }
     getData()
@@ -50,23 +39,48 @@ export let userBaned = (id, dispatch) => {
             if (payload) {
                 dispatch({ type: "CHANGE_TABLE_DATA", payload, idRow: id })
             }
+            dispatch({ type: "ADD_NOTIFICATION", message })
         })
         .catch((error) => {
             console.log(error, "ERROR");
         })
 }
 
-export let userRemove = id => {
+export let userRemove = (dispatch, id) => {
     axios.get(REMOVE_USER, {
         params: {
             id
         }
     })
         .then((response) => {
-            console.log(response.data);
+            const message = response.data.message
+            dispatch({ type: "ADD_NOTIFICATION", message })
+            dispatch({ type: "REMOVE_TABLE_DATA", id })
 
         })
         .catch((error) => {
             console.log(error, "ERROR");
         })
+}
+
+
+//Remove by id and data base name, except users
+export let removeDataByID = (dispatch, id, dataName) => {
+    let dataBaseName = dataBaseNameOnServer[dataName];
+
+       axios.get(REMOVE_DATA_BY_ID, {
+            params: {
+                dataBaseName,
+                id
+            }
+        })
+            .then((response) => {
+                const message = response.data.message
+                dispatch({ type: "ADD_NOTIFICATION", message })
+                dispatch({ type: "REMOVE_TABLE_DATA", id })
+    
+            })
+            .catch((error) => {
+                console.log(error, "ERROR");
+            }) 
 }

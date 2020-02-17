@@ -1,5 +1,6 @@
 import React from 'react';
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { dataBaseNameOnServer } from '../Admin/DataTable/ModeTable'
 //MaterialUI
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -15,6 +16,7 @@ export default function AlertDialog(props) {
     const dispatch = useDispatch()
     let { closed, data } = props
     const dialogBody = option(data.action)
+    let dataName = useSelector(state => state.admin.dataType)
 
     const handleDisagree = () => {
         setOpen(false);
@@ -25,7 +27,7 @@ export default function AlertDialog(props) {
     const handleAgree = () => {
         setOpen(false);
         closed()
-        dialogBody.handler(dispatch,data.id)
+        dialogBody.handler(dispatch, data.id,dataName)
     };
 
 

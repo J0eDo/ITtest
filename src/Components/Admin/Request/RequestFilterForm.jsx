@@ -1,7 +1,7 @@
 import React from 'react'
 import FilterForm from './RequestFilter'
-
-const elementsUser = {
+import { dataName } from '../DataTable/ModeTable'
+const userFilter = {
     textFields: [
         {
             label: 'id'
@@ -12,14 +12,31 @@ const elementsUser = {
         {
             label: 'username'
         }],
-    selectItems :[
-        'All',
+    selectItems: [
+        'All users',
         'Admins',
         'Banlist'
     ],
-    dataBaseName:'users'
+    dataBaseName: dataName.USER
 }
-const elementsTest = {
+
+const theTasksFilter = {
+    textFields: [
+        {
+            label: 'id'
+        },
+        {
+            label: 'testname'
+        }],
+    selectItems: [
+        'All task',
+        'approved',
+        'not approved',
+    ],
+    dataBaseName: dataName.THE_TASKS
+}
+
+const testListFilter = {
     textFields: [
         {
             label: 'id'
@@ -30,38 +47,22 @@ const elementsTest = {
         {
             label: 'tag'
         }],
-        selectItems :[
-            'All',
-            'finished',
-            'not finished', 
-        ],
-        dataBaseName:'tests'
-}
-const elementsAnswer = {
-    textFields: [
-        {
-            label: 'id'
-        },
-        {
-            label: 'testname'
-        }],
-        selectItems :[
-            'All',
-            'approved',
-            'not approved',
-            'wait approved'
-        ],
-        dataBaseName:'answers'
+    selectItems: [
+        'All tests',
+        'finished',
+        'not finished',
+    ],
+    dataBaseName: dataName.THE_TASKS
 }
 
 const RequestDatabaseForm = (type) => {
     switch (type) {
-        case 'users':
-            return FilterForm(elementsUser, type)
-        case 'answers':
-            return FilterForm(elementsAnswer, type)
-        case 'tests':
-            return FilterForm(elementsTest, type)
+        case dataName.USER:
+            return FilterForm(userFilter, type)
+        case dataName.THE_TASKS:
+            return FilterForm(theTasksFilter, type)
+        case dataName.TEST_LIST:
+            return FilterForm(testListFilter, type)
         default:
             return <p>Error data type!</p>
     }

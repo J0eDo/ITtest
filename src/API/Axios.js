@@ -4,16 +4,9 @@ export const axios = Axios.create({
     baseURL: 'http://185.87.194.11:3333/',
 });
 
-//Route
-export const REGISTRATION = '/registration'
-export const LOGIN = '/login'
-export const ACCOUNT_INFO = '/accountInfo'
-//Administrator
-export const GET_USERS = '/getUsers'
-export const GET_TESTS = '/getTests'
-export const GET_ANSWERS = '/getAnswers'
-export const BANED_UNBANED = '/userSuccess'
-export const REMOVE_USER = '/userRemove'
+export const dataBaseNameOnServer =  {'Users':'users','Tasks':'the_tasks','Tests':'test' }
+
+
 
 //Manage Auth
 export const setJWT = (token) => {
@@ -30,3 +23,18 @@ export const defaultJWT = () => {
         axios.defaults.headers.common["Authorization"] = token
     }
 }
+
+
+//Route
+export const REGISTRATION = '/registration'
+export const LOGIN = '/login'
+export const ACCOUNT_INFO = '/accountInfo'
+//Administrator
+export const GET_DATA_BY_NAME = '/getDataByName'
+export const REMOVE_DATA_BY_ID = '/removeDataByID'
+export const BANED_UNBANED = '/userSuccess'
+export const REMOVE_USER = '/userRemove'
+//TasksConstructor
+export const TASK = '/task'
+export const SAVE_TASK = '/saveTask'
+

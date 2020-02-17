@@ -1,5 +1,5 @@
-import React from 'react';
-import {useSelector} from 'react-redux'
+import React, { useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux'
 import './style.scss'
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -70,13 +70,19 @@ const useStyles = makeStyles(theme => ({
 export default function EnhancedTable(props) {
   const toolbarOption = props.option.toolbarOption
   const columns = props.option.columns
-  let buttonOption = props.option.remote
+  const buttonOption = props.option.remote
 
+
+  useEffect(() => { 
+    setSelected({ id: undefined, target: undefined }) 
+    setPage(0)
+  }, [props]);
 
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
-  const [selected, setSelected] = React.useState({id:undefined, target:undefined});
+  const [selected, setSelected] = React.useState({ id: undefined, target: undefined });
+  const dispatch = useDispatch()
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const rows = useSelector(state => state.admin.tableData)
@@ -87,28 +93,23 @@ export default function EnhancedTable(props) {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = event => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
+
 
   const handleClick = (event, id) => {
     let newTarget = event.currentTarget
-    let newSelect = {target:undefined, id:undefined}
-    const isRepeat = selected.id === id   
-    if(isRepeat){
+    let newSelect = { target: undefined, id: undefined }
+    const isRepeat = selected.id === id
+    if (isRepeat) {
       selected.target.classList.remove('rowChanged')
       setSelected(newSelect)
-    }else{
-      selected.target&&selected.target.classList.remove('rowChanged')
+      dispatch({type:"SET_TARGET_ID",id:undefined})
+    } else {
+      selected.target && selected.target.classList.remove('rowChanged')
       newTarget.classList.add('rowChanged')
       newSelect.id = id
       newSelect.target = newTarget
       setSelected(newSelect);
+      dispatch({type:"SET_TARGET_ID",id})
     }
   };
 
@@ -140,7 +141,6 @@ export default function EnhancedTable(props) {
               classes={classes}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={rows.length}
               columns={columns}
@@ -169,25 +169,27 @@ export default function EnhancedTable(props) {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 33 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={rows.length} />
                 </TableRow>
               )}
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
+        <div>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+          <TableRemotePanel buttons={buttonOption}
+            selectedID={selected.id}
+          />
+        </div>
       </Paper>
-      <TableRemotePanel buttons={buttonOption}
-        selectedID = {selected.id}
-      />
     </div>
   );
 }

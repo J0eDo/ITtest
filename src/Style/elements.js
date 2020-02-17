@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper'
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import TextField from '@material-ui/core/TextField';
 
 
 export const MenuBadge = (title, link) => (
@@ -16,12 +19,17 @@ export const MenuBadge = (title, link) => (
     </Badge>
 )
 
-export const InfoCard = (Component) => (
+export const InfoCard = (Component, ...props) => (
     <Paper className="infoCard">
-        <Component />
+        <Component {...props} />
     </Paper>
 )
 
+export const SuccessCard = (Component) => (
+    <Paper className="successCard">
+        <Component />
+    </Paper>
+)
 export const Selects = (prop) => (
     <Select
         style={{
@@ -39,6 +47,17 @@ export const Selects = (prop) => (
     </Select>
 )
 
+export const SimpleCheckbox = (props) => (
+    <FormControlLabel
+        control={
+            <Checkbox
+                checked={props.value}
+                onChange={() => props.setValue(!props.value)}
+            />
+        }
+        label={props.label}
+    />
+)
 
 
 

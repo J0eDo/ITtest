@@ -12,7 +12,15 @@ $light :rgb(192, 221, 221);
 }
 
 .infoCard{
-    margin: 1rem;
+    margin: .05rem 1rem;
     padding: 1rem;
     min-height: 10vh;
+}
+
+.successCard{
+    background-color: chartreuse !important;
+}
+
+.checkBox{
+    margin: auto 5rem;
 }

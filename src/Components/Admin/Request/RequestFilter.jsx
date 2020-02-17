@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -12,6 +12,11 @@ function FilterForm(data) {
     const getFields = () => {
         return data.textFields.map(element => document.getElementById(`${element.label}`))
     }
+
+    useEffect(()=>{
+        setData(data.selectItems[0])
+    },[data])
+
 
     const filtersReset = () => {
         getFields().forEach(element => {

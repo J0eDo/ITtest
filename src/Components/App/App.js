@@ -1,5 +1,5 @@
 //Libarys
-import React, { useSelector, useEffect } from 'react'
+import React from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -15,6 +15,8 @@ import GeneralPage from '../GeneralPage/GeneralPage'
 import Profile from '../Profile/Profile'
 import TestsList from '../TestPage/TestsList'
 import AdminPage from '../Admin'
+import SnackBar from '../Snackbar/Snackbar'
+import TaskConstructor from '../TaskConstructor/TaskConstructor'
 
 
 
@@ -26,11 +28,13 @@ function App() {
             <main className="app">
                 <Switch>
                     <Route exact path="/" component={GeneralPage} />
-                    <Route exact path="/tests" component={TestsList} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/admin" component={AdminPage} />
+                    <Route path="/tests" component={TestsList} />
+                    <Route path="/profile" component={Profile} />
+                    <Route path="/admin" component={AdminPage} />
+                    <Route path="/task-constructor/:id" component={TaskConstructor} />
                 </Switch>
             </main>
+            <SnackBar />
             <footer>
                 <div className="footer_contacts">
                     <p>noreduard93@gmail.com</p>

@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
 import { Selects } from '../../../Style/elements'
 import requestFilterForm from './RequestFilterForm'
+import {dataNames} from '../DataTable/ModeTable'
 
 
 export default function RequestBody() {
-    const [dataType, setData] = useState('users')
+    const [dataType, setData] = useState(dataNames[0])
     const setDataHandler = event => {
         setData(event.target.value)
     }
     const selectProps = {
         dataType,
         setDataHandler,
-        items: ['users', 'answers', 'tests'],
+        items: dataNames,
         selectID: 'selectDataType'
     }
     return (

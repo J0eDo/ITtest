@@ -56,7 +56,6 @@ export const getUserData = async (dispatch) => {
            dispatch({type:"GET_PROFILE", payload:response.data.userData})          
         })
         .catch((error) => {
-            //Catch is work
             console.log(error,"ERROR");
         })
     }

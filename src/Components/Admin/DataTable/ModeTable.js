@@ -1,3 +1,12 @@
+export const dataName = {
+    USER: 'Users', THE_TASKS: 'Tasks', TEST_LIST: 'Tests'
+}
+
+export const dataNames = ['Users', 'Tasks', 'Tests']
+
+export const dataBaseNameOnServer = { 'Users': 'users', 'Tasks': 'the_tasks', 'Tests': 'tests' }
+
+
 export const actions = {
     user: {
         BANED: "BANED/UNBANED",
@@ -8,7 +17,7 @@ export const actions = {
         APPROWED: "APPROWED/UNAPPROWED_TEST",
         REMOVE: "REMOVE_TEST"
     },
-    answer: {
+    theTasks: {
         ADD: "ADD_ANSWER",
         CHANGE: "CHANGE_ANSWER",
         APPROWED: "APPROWED/UNAPPROWED_ANSWER",
@@ -17,16 +26,18 @@ export const actions = {
 
 }
 
+const redirectPath = path => id=>path(id)
+
 export function columnConvert(column, dataType) {
     let columns
     switch (dataType) {
-        case 'users':
-            columns = { username: 'column2', email: 'column3', success: 'column4', ranc: 'column5' }
+        case dataName.USER:
+            columns = { username: 'column2', email: 'column3', success: 'column4' }
             return columns[column]
-        case 'tests':
-            columns = { testname: 'column2', type: 'column3', status: 'column4'}
+        case dataName.TEST_LIST:
+            columns = { testname: 'column2', type: 'column3', status: 'column4' }
             return columns[column]
-        case 'answers':
+        case dataName.THE_TASKS:
             columns = { testID: 'column2', type: 'column3', status: 'column4' }
             return columns[column]
         default:
@@ -38,25 +49,24 @@ export function columnConvert(column, dataType) {
 
 
 export const ModeTable = {
-    USER: {
+    [dataName.USER]: {
         toolbarOption: {
-            header: 'Users'
+            header: dataName.USER
         },
         columns: [
             { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
             { id: 'column2', numeric: true, disablePadding: false, label: 'username' },
             { id: 'column3', numeric: true, disablePadding: false, label: 'em@il' },
             { id: 'column4', numeric: true, disablePadding: false, label: 'success' },
-            { id: 'column5', numeric: true, disablePadding: false, label: 'ranc' },
         ],
         remote: [
             { id: actions.user.BANED, label: 'baned/unbaned', alwaysActiv: false, withDialog: true },
             { id: actions.user.REMOVE, label: 'Remove', alwaysActiv: false, withDialog: true },
         ]
     },
-    ANSWER: {
+    [dataName.THE_TASKS]: {
         toolbarOption: {
-            header: 'Answers'
+            header: dataName.THE_TASKS
         },
         columns: [
             { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
@@ -65,14 +75,16 @@ export const ModeTable = {
             { id: 'column4', numeric: true, disablePadding: false, label: 'status' },
         ],
         remote: [
-            { id: actions.answer.ADD, label: 'Add', alwaysActiv: true, withDialog: false },
-            { id: actions.answer.CHANGE, label: 'Changed', alwaysActiv: false, withDialog: false },
-            { id: actions.answer.REMOVE, label: 'Remove', alwaysActiv: false, withDialog: true },
+            { id: actions.theTasks.ADD, label: 'Add', alwaysActiv: true, 
+            withDialog: false, path: redirectPath((id)=>`/task-constructor/new`) },
+            { id: actions.theTasks.CHANGE, label: 'Changed', alwaysActiv: false, 
+            withDialog: false, path: redirectPath((id)=>`/task-constructor/${id}`) },
+            { id: actions.theTasks.REMOVE, label: 'Remove', alwaysActiv: false, withDialog: true },
         ]
     },
-    TEST: {
+    [dataName.TEST_LIST]: {
         toolbarOption: {
-            header: 'Tests'
+            header: dataName.TEST_LIST
         },
         columns: [
             { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
