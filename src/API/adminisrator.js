@@ -4,7 +4,8 @@ import {
     BANED_UNBANED,
     REMOVE_USER,
     REMOVE_DATA_BY_ID,
-    dataBaseNameOnServer
+    dataBaseNameOnServer,
+    errorServer
 } from './Axios'
 import qs from 'querystring'
 
@@ -41,8 +42,8 @@ export let userBaned = (id, dispatch) => {
             }
             dispatch({ type: "ADD_NOTIFICATION", message })
         })
-        .catch((error) => {
-            console.log(error, "ERROR");
+        .catch(() => {
+            errorServer(dispatch)
         })
 }
 
@@ -58,29 +59,28 @@ export let userRemove = (dispatch, id) => {
             dispatch({ type: "REMOVE_TABLE_DATA", id })
 
         })
-        .catch((error) => {
-            console.log(error, "ERROR");
+        .catch(() => {
+            errorServer(dispatch)
         })
 }
 
 
 //Remove by id and data base name, except users
 export let removeDataByID = (dispatch, id, dataName) => {
-    let dataBaseName = dataBaseNameOnServer[dataName];
+    let dataBaseName = dataBaseNameOnServer[dataName]
+    return (axios.get(REMOVE_DATA_BY_ID, {
+        params: {
+            dataBaseName,
+            id
+        }
+    })
+        .then((response) => {
+            const message = response.data.message
+            dispatch({ type: "ADD_NOTIFICATION", message })
+            dispatch({ type: "REMOVE_TABLE_DATA", id })
 
-       axios.get(REMOVE_DATA_BY_ID, {
-            params: {
-                dataBaseName,
-                id
-            }
         })
-            .then((response) => {
-                const message = response.data.message
-                dispatch({ type: "ADD_NOTIFICATION", message })
-                dispatch({ type: "REMOVE_TABLE_DATA", id })
-    
-            })
-            .catch((error) => {
-                console.log(error, "ERROR");
-            }) 
+        .catch(() => {
+            errorServer(dispatch)
+        }))
 }

@@ -18,10 +18,10 @@ export const actions = {
         REMOVE: "REMOVE_TEST"
     },
     theTasks: {
-        ADD: "ADD_ANSWER",
-        CHANGE: "CHANGE_ANSWER",
-        APPROWED: "APPROWED/UNAPPROWED_ANSWER",
-        REMOVE: "REMOVE_ANSWER"
+        ADD: "ADD_TASK",
+        CHANGE: "CHANGE_THE_TASK",
+        APPROWED: "APPROWED/UNAPPROWED_TASK",
+        REMOVE: "REMOVE_THE_TASK"
     }
 
 }

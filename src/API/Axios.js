@@ -4,9 +4,7 @@ export const axios = Axios.create({
     baseURL: 'http://185.87.194.11:3333/',
 });
 
-export const dataBaseNameOnServer =  {'Users':'users','Tasks':'the_tasks','Tests':'test' }
-
-
+export const dataBaseNameOnServer = { 'Users': 'users', 'Tasks': 'the_tasks', 'Tests': 'test' }
 
 //Manage Auth
 export const setJWT = (token) => {
@@ -22,6 +20,14 @@ export const defaultJWT = () => {
     if (token) {
         axios.defaults.headers.common["Authorization"] = token
     }
+}
+
+export const errorServer = (dispatch) => {
+    const message = {
+        severity: 'error',
+        title: 'Server Errror'
+    }
+    dispatch({type: "ADD_NOTIFICATION", message})
 }
 
 

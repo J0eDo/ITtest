@@ -6,20 +6,28 @@ import { taskTypes } from './TaskConstructorSetting'
 import { InfoCard } from '../../Style/elements'
 //Components
 import RemoteConstructor from './RemoteConstructor'
-import OneOfX from './Types/OneOfX'
-import DnD from './Types/DrugAndDrop'
+//              construct               //
+import ConstructOneOfX from './Types/ConstructOneOfX'
+import ConstructDnD from './Types/ConstructDrugAndDrop'
+//              theTask                 //
+import OneOfX from '../TheTask/TheTaskType/OneOfX'
+import DnD from '../TheTask/TheTaskType/DragAndDrop'
+
 
 export default function AnswerConstructor() {
     let taskTypeNow = useSelector(state => state.constructorTests.taskType)
+    const preview = useSelector(state => state.constructorTests.preview)
 
-
-    let canvas
+    let constructorMode
+    let previewMode
     switch (taskTypeNow) {
         case taskTypes[0]:
-            canvas = OneOfX
+            constructorMode = ConstructOneOfX
+            previewMode = OneOfX
             break;
         case taskTypes[1]:
-            canvas = DnD
+            constructorMode = ConstructDnD
+            previewMode = DnD
             break;
         default:
             break;
@@ -27,7 +35,7 @@ export default function AnswerConstructor() {
 
     return (
         <div>
-            {InfoCard(canvas)}
+            {preview?InfoCard(previewMode):InfoCard(constructorMode)}
             {InfoCard(RemoteConstructor)}
         </div>
     )

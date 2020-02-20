@@ -1,9 +1,23 @@
-import { actions } from '../Admin/DataTable/ModeTable'
+import React from 'react'
+import { createPortal } from 'react-dom'
+import { actions as actionsTable } from '../Admin/DataTable/ModeTable'
 import { userBaned, userRemove, removeDataByID } from '../../API/adminisrator'
+import DialogWindow from './DialogWindow'
+
+export const dialogWindow = (openState, setOpenState, data) => {
+    console.log(data);
+    
+    if (openState) {
+        return createPortal(<DialogWindow data={data} closed={() => setOpenState(false)} />,
+            document.getElementById('second'))
+    } else {
+        return createPortal(null, document.getElementById('second'))
+    }
+}
 
 export default function (action) {
     switch (action) {
-        case actions.user.BANED:
+        case actionsTable.user.BANED:
             return {
                 title: "Изменение уровня доступа",
                 body: (id) => `Вы уверены что хотите изменить уровень доступа пользователя ID ${id}`,
@@ -11,7 +25,7 @@ export default function (action) {
                     userBaned(id, dispatch)
                 }
             }
-        case actions.user.REMOVE:
+        case actionsTable.user.REMOVE:
             return {
                 title: "Удаление пользователя!",
                 body: (id) => `Вы уверены что хотите УДАЛИТЬ пользователя ID ${id}`,
@@ -19,7 +33,7 @@ export default function (action) {
                     userRemove(dispatch, id)
                 }
             }
-        case actions.theTasks.REMOVE:
+        case actionsTable.theTasks.REMOVE:
             return {
                 title: "Удаление задачи!",
                 body: (id) => `Вы уверены что хотите УДАЛИТЬ задание ID ${id}`,

@@ -1,25 +1,18 @@
 import React, { useState } from 'react'
 import Button from '@material-ui/core/Button'
 import { useSelector } from 'react-redux'
-import { createPortal } from 'react-dom'
 import { useHistory } from 'react-router-dom';
-import DialogWindow from '../../DialogWindow/DialogWindow'
+import { dialogWindow } from '../../DialogWindow/Dialogs'
+
+
 
 
 export default function TableRemotePanel(props) {
     const { buttons, selectedID } = props
     const [dialogOptions, setDialogOptions] = useState(0)
     const [dialogData, setDialogData] = useState({})
-    const targetDataID = useSelector(state=>state.admin.targetID)
+    const targetDataID = useSelector(state => state.admin.targetID)
     let history = useHistory();
-    function dialogWindow() {
-        if (dialogOptions) {
-            return createPortal(<DialogWindow data={dialogData} closed={closeDialog} />,
-                document.getElementById('second'))
-        } else {
-            return createPortal(null, document.getElementById('second'))
-        }
-    }
 
     function enterAction(action, id, isDialog, path = null) {
         if (isDialog) {
@@ -28,9 +21,6 @@ export default function TableRemotePanel(props) {
         } else {
             history.push(path(targetDataID));
         }
-    }
-    const closeDialog = () => {
-        setDialogOptions(false)
     }
 
     return (
@@ -43,7 +33,7 @@ export default function TableRemotePanel(props) {
                         key={`${Element.id}`}>{Element.label}</Button>
                 ))
             }
-            {dialogWindow()}
+            {dialogWindow(dialogOptions, setDialogOptions, dialogData)}
         </div>
     )
 }

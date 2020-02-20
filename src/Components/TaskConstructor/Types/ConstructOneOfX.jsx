@@ -3,8 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import '../style.scss'
+
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
@@ -19,10 +21,22 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function OneOfX() {
+let i
+
+export default function ConstructOneOfX() {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const [variants, setVariants] = useState(['wrong0'])
+    const previewTask = useSelector(state => state.constructorTests.previewTask)
+    let theTask = useSelector(state => state.constructorTests.theTask)
+    if (!theTask) {
+        theTask = previewTask
+    }else{
+        theTask = theTask.body
+    }
+
+
+    let [variants, setVariants] = useState(['wrong0'])
+    let { id } = useParams()
     let oneOfX = {
         task: 'task',
         correct: 'correct',
@@ -33,10 +47,56 @@ export default function OneOfX() {
         dispatch({ type: "INPUTS_LINKS", inputLinks: oneOfX })
     }, [variants])
 
+    useEffect(() => {
+        console.log(theTask);
+        
+        if (!parseInt(id)) {
+            setVariants(['wrong0'])
+            for (let key in oneOfX) {
+                if (!Array.isArray(oneOfX[key])) {
+                    inputValue(key, "")
+                } else {
+                    oneOfX[key].forEach(element => {
+                        inputValue(element, "")
+                    });
+                }
+            }
+        }
+    }, [id])
+
+    useEffect(() => {
+            if (theTask) {
+                theTask.wrongs.forEach((element, index, arr) => (index !== arr.length - 1) && addVariant());
+                for (let key in theTask) {
+                    if (!Array.isArray(theTask[key])) {
+                        inputValue(key, theTask[key])
+                    } else {
+                        theTask[key].forEach((element, index) => {
+                            //time for reconstruct DOM
+                            setTimeout(() => {
+                                inputValue(variants[index], theTask.wrongs[index])
+                            }, 0);
+                        });
+                    }
+                }
+            }
+    }, [theTask])
+
+    function inputValue(id, newValue) {
+        let elem = document.getElementById(id)
+        elem.value = newValue
+    }
+
     const addVariant = () => {
-        variants.push(true)
-        setVariants(variants)
-        const newVariants = variants.map((element, index) => `wrong${index}`)
+        let key = index => `wrong${index}`
+        let newKey
+        i = 0
+        do {
+            ++i
+        } while (variants.includes(key(i)));
+        newKey = key(i)
+        variants.push(newKey)
+        const newVariants = JSON.parse(JSON.stringify(variants))
         setVariants(newVariants)
     }
 
@@ -107,10 +167,9 @@ export default function OneOfX() {
                 <TextField
                     id={oneOfX.task}
                     className={classes.root}
-                    label="Task text"
+                    label="Задание"
                     multiline
                     rows="5"
-                    defaultValue=""
                     variant="filled"
                 />
             </form>

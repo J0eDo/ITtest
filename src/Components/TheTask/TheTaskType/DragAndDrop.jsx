@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function DrugAndDrop() {
+export default function DragAndDrop() {
     return (
         <div>
-            DND
+            It D'n Drop:)
         </div>
     )
 }

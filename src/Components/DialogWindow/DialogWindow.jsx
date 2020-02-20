@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from "react-redux"
-import { dataBaseNameOnServer } from '../Admin/DataTable/ModeTable'
 //MaterialUI
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -23,13 +22,11 @@ export default function AlertDialog(props) {
         closed()
     };
 
-
     const handleAgree = () => {
         setOpen(false);
         closed()
         dialogBody.handler(dispatch, data.id,dataName)
     };
-
 
     return (
         <div>

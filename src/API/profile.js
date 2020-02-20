@@ -1,6 +1,7 @@
 import {
     axios, REGISTRATION,
-    LOGIN, ACCOUNT_INFO
+    LOGIN, ACCOUNT_INFO,
+    errorServer
 } from './Axios'
 import { showErrorRegistration, showErrorLogin } from '../until/ErrorAuth'
 
@@ -22,9 +23,8 @@ export const registration = dispatch => {
             } else {
                 showErrorRegistration(response.data[0])
             }
-        }).catch((error) => {
-            console.log(error);
-            //ServerError
+        }).catch(() => {
+            errorServer(dispatch)
         })
     }
     registrated()
@@ -55,8 +55,8 @@ export const getUserData = async (dispatch) => {
         .then((response) => {
            dispatch({type:"GET_PROFILE", payload:response.data.userData})          
         })
-        .catch((error) => {
-            console.log(error,"ERROR");
+        .catch(() => {
+            errorServer(dispatch)
         })
     }
     getData()

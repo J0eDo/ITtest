@@ -17,6 +17,8 @@ function FilterForm(data) {
         setData(data.selectItems[0])
     },[data])
 
+    
+
 
     const filtersReset = () => {
         getFields().forEach(element => {
@@ -37,6 +39,8 @@ function FilterForm(data) {
     }
 
     const enterRequest = () => {
+        console.log(23);
+        
         let body = {
             fields: []
         }

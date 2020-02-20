@@ -26,7 +26,7 @@ function normalizeDataAdminTable(action) {
                 let { id, username, email, success } = element
                 if (success === 0) {
                     success = "baned"
-                } else if (success == 1) {
+                } else if (success === 1) {
                     success = "user"
                 } else {
                     success = "admin"

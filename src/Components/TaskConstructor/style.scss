@@ -1,6 +1,6 @@
 .remotePanel{
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     width: 100%;
     .remotePanel_first{
         flex-grow: 5;
