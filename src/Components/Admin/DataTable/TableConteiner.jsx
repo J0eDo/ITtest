@@ -11,8 +11,8 @@ export default function TableConteiner() {
                 return ModeTable[dataName.USER]
             case dataName.THE_TASKS:
                 return ModeTable[dataName.THE_TASKS]
-            case dataName.THE_TASKS:
-                return ModeTable[dataName.THE_TASKS]
+            case dataName.TEST_LIST:
+                return ModeTable[dataName.TEST_LIST]
             default: break;
         }
     }

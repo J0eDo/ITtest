@@ -17,6 +17,7 @@ import TestsList from '../TestPage/TestsList'
 import AdminPage from '../Admin'
 import SnackBar from '../Snackbar/Snackbar'
 import TaskConstructor from '../TaskConstructor/TaskConstructor'
+import TestConstructor from '../TestConstructor/TestConstructor'
 
 
 
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/profile" component={Profile} />
                     <Route path="/admin" component={AdminPage} />
                     <Route path="/task-constructor/:id" component={TaskConstructor} />
+                    <Route path="/test-constructor/:id" component={TestConstructor} />
                 </Switch>
             </main>
             <SnackBar />

@@ -1,0 +1,52 @@
+.lineConteiner{
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    .tableConteiner{
+        margin: auto;
+        flex-grow: 5;
+        height: 90%;
+        background-color: rgb(245, 239, 188);
+        *{
+            margin: auto;
+        }
+    }
+    .remote{
+        margin: auto;
+        flex-grow: 1;
+        height: 90%;
+        display: flex;
+        flex-flow: column,nowrap;
+        justify-content: center;
+        align-items: center;
+        background-color:rgb(245, 238, 177);
+    }
+}
+.lineRemote{
+    text-align: right;
+    margin: .5rem 1rem 0 0;
+}
+
+.testGeneral_conteiner{
+    display: flex;
+    flex-flow: row nowrap;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.downloadBlock{
+    width: 10rem;
+    height: 10rem;
+    background-color: rgb(199, 236, 185);
+    .label{
+        position: relative;
+        display: block;
+        margin: auto;
+    }
+    input{
+        opacity: 0;
+        width: 10rem;
+        height: 10rem;
+    }
+}

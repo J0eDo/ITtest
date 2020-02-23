@@ -26,66 +26,43 @@ let i
 export default function ConstructOneOfX() {
     const classes = useStyles();
     const dispatch = useDispatch()
-    const previewTask = useSelector(state => state.constructorTests.previewTask)
     let theTask = useSelector(state => state.constructorTests.theTask)
-    if (!theTask) {
-        theTask = previewTask
-    }else{
-        theTask = theTask.body
-    }
+    let isServerLoad = useSelector(state => state.constructorTests.taskLoadedServer)
 
-
-    let [variants, setVariants] = useState(['wrong0'])
+    let [keysInput, setKeysInput] = useState(['wrong0'])
+    let [bodyValues, setBodyValues] = useState({
+        task: [],
+        correct: [],
+        wrongs: []
+    })
     let { id } = useParams()
-    let oneOfX = {
-        task: 'task',
-        correct: 'correct',
-        wrongs: variants
+
+    const changeValues = (e, index, value, key) => {
+        if (e.target) {
+            bodyValues[key][index] = e.target.value
+        } else {
+            bodyValues[key][index] = value
+        }
+        let newBody = { ...bodyValues }
+        setBodyValues(newBody)
     }
+    useEffect(() => {
+        return () => {
+            dispatch({ type: "SET_THE_TASK", theTask: bodyValues }) 
+        };
+    }, [])
 
     useEffect(() => {
-        dispatch({ type: "INPUTS_LINKS", inputLinks: oneOfX })
-    }, [variants])
-
-    useEffect(() => {
-        console.log(theTask);
-        
-        if (!parseInt(id)) {
-            setVariants(['wrong0'])
-            for (let key in oneOfX) {
-                if (!Array.isArray(oneOfX[key])) {
-                    inputValue(key, "")
-                } else {
-                    oneOfX[key].forEach(element => {
-                        inputValue(element, "")
-                    });
-                }
+        if (theTask) {
+            theTask.wrongs.forEach((element, index, arr) => (index !== arr.length - 1) && addVariant());
+            for (let key in theTask) {
+                theTask[key].forEach((element, index) => {
+                    changeValues({}, index, theTask[key][index], key)
+                });
             }
         }
-    }, [id])
+    }, [theTask, id])
 
-    useEffect(() => {
-            if (theTask) {
-                theTask.wrongs.forEach((element, index, arr) => (index !== arr.length - 1) && addVariant());
-                for (let key in theTask) {
-                    if (!Array.isArray(theTask[key])) {
-                        inputValue(key, theTask[key])
-                    } else {
-                        theTask[key].forEach((element, index) => {
-                            //time for reconstruct DOM
-                            setTimeout(() => {
-                                inputValue(variants[index], theTask.wrongs[index])
-                            }, 0);
-                        });
-                    }
-                }
-            }
-    }, [theTask])
-
-    function inputValue(id, newValue) {
-        let elem = document.getElementById(id)
-        elem.value = newValue
-    }
 
     const addVariant = () => {
         let key = index => `wrong${index}`
@@ -93,41 +70,29 @@ export default function ConstructOneOfX() {
         i = 0
         do {
             ++i
-        } while (variants.includes(key(i)));
+        } while (keysInput.includes(key(i)));
         newKey = key(i)
-        variants.push(newKey)
-        const newVariants = JSON.parse(JSON.stringify(variants))
-        setVariants(newVariants)
+        keysInput.push(newKey)
+        const newVariants = JSON.parse(JSON.stringify(keysInput))
+        setKeysInput(newVariants)
     }
-
 
     function removeKey(index) {
-        const newVariants = variants.filter(element => element !== variants[index])
-        setVariants(newVariants)
+        const newVariants = keysInput.filter(element => element !== keysInput[index])
+        setKeysInput(newVariants)
     }
 
-    const correct = () => (
-        <TextField
-            id={oneOfX.correct}
-            className={classes.root}
-            label={`Верный`}
-            multiline
-            rows="1"
-            defaultValue=""
-            variant="filled"
-        />
-    )
     function wronge(index) {
         return (
-            <div className="rowVariant" key={variants[index]}>
-                {buttonsConstructor(index, variants)}
+            <div className="rowVariant" key={keysInput[index]}>
+                {buttonsConstructor(index, keysInput)}
                 <TextField
-                    id={variants[index]}
                     className={classes.root}
+                    onChange={e => changeValues(e, index, null, 'wrongs')}
+                    defaultValue={bodyValues.wrongs[index]}
                     label={`Неверный${index + 1}`}
                     multiline
                     rows="1"
-                    defaultValue=""
                     variant="filled"
                 />
             </div>)
@@ -165,21 +130,26 @@ export default function ConstructOneOfX() {
         <div>
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField
-                    id={oneOfX.task}
                     className={classes.root}
+                    onChange={(e) => changeValues(e, 0, null, 'task')}
+                    defaultValue={bodyValues.task}
                     label="Задание"
                     multiline
                     rows="5"
                     variant="filled"
                 />
-            </form>
-            <form className={classes.root} noValidate autoComplete="off">
-
-                {correct()}
+                <TextField
+                    className={classes.root}
+                    onChange={(e) => changeValues(e, 0, null, 'correct')}
+                    defaultValue={bodyValues.correct}
+                    label={`Верный`}
+                    multiline
+                    rows="1"
+                    variant="filled"
+                />
                 {
-                    variants.map((element, index, array) => wronge(index))
+                    keysInput.map((element, index, array) => wronge(index))
                 }
-
             </form>
         </div>
     )

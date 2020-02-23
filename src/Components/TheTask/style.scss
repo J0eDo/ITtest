@@ -1,0 +1,43 @@
+.theTastText {
+  text-align: center;
+  background-color: rgb(48, 78, 177);
+  border-radius: 5px;
+  margin: auto;
+  padding: 3rem 1rem;
+}
+
+.variantLI {
+  background-color: rgb(109, 139, 163);
+  border-radius: 5px;
+  list-style-position: inside;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 90%;
+  font-weight: 300;
+  font-size: 100%;
+}
+
+.variantLI_select {
+    animation:.4s linear 0s selectON;
+    font-weight: 400;
+    font-size: 110%;
+    color: black;
+}
+
+@keyframes selectON {
+  0%{
+    font-weight: 100;
+    font-size: 100%;
+    color: black;
+  }
+  50%{
+    font-weight: 400;
+    font-size: 125%;
+    color: white;
+  }
+  100% {
+    font-weight: 400;
+    font-size: 110%;
+    color: black;
+  }
+}

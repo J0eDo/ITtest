@@ -8,6 +8,8 @@ import {
 
 export const saveTask = (dispatch, taskBody, id, type) => {
     taskBody = JSON.stringify(taskBody)
+    console.log(taskBody,"INs");
+    
     id = parseInt(id)
     axios.get(SAVE_TASK, {
         params: { taskBody, id ,type}
@@ -34,7 +36,7 @@ export const getTask = (dispatch, id) => {
                 //not found
                 dispatch({ type: "ADD_NOTIFICATION", message: response.data.message })
             } else {
-                dispatch({ type: "SET_THE_TASK", theTask: response.data.task })
+                dispatch({ type: "SET_THE_TASK", theTask: response.data.task.body,server:true })
             }
         })
         .catch(() => {

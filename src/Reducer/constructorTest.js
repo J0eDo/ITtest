@@ -1,8 +1,9 @@
 const constructorTest = (state, action) => {
     let newState = { ...state }
     switch (action.type) {
-        case "INPUTS_LINKS":
-            newState.inputLinks = action.inputLinks
+        case "SET_BODY_VALUE":
+            newState.body = action.body
+            newState.taskLoadedServer = action.server
             return newState
         case "THE_TASK_TYPE":
             newState.taskType = action.taskType
@@ -12,8 +13,6 @@ const constructorTest = (state, action) => {
             return newState
         case "PREVIEW":
             newState.preview = action.preview
-            if (action.previewTask)
-                newState.previewTask = action.previewTask
             return newState
         case "NEW_TASK_ID":
             newState.newTaskID = action.id

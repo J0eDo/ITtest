@@ -44,10 +44,11 @@ function normalizeDataAdminTable(action) {
             action.tableData = payload
             break;
         case dataName.Tests:
+            console.log(data,"MV");
+            
             data.forEach(element => {
-                const { id, username, email, success } = element
-                const rank = element.profile.rank
-                payload.push(createFormatUser(id, username, email, success, rank))
+                const { id, testName, complexity, status } = element
+                payload.push(createFormatUser(id, testName, complexity, status))
             });
             action.tableData = payload
             break;

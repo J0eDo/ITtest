@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { taskTypes, getInputsFields } from './TaskConstructorSetting'
+import { taskTypes } from './TaskConstructorSetting'
 import { useParams, useHistory } from 'react-router-dom'
 import { getTask } from '../../API/taskConstructor'
 import { removeDataByID } from '../../API/adminisrator'
@@ -19,13 +18,15 @@ export default function TestConstructorSetting(props) {
     const [dialogOptions, setDialogOptions] = useState(0)
     const [hasData, setHasData] = useState(false)
     const dispatch = useDispatch()
-    const taskLinks = useSelector(state => state.constructorTests.inputLinks)
+    const theTask = useSelector(state => state.constructorTests.theTask)
     const previewMode = useSelector(state => state.constructorTests.preview)
     const newID = useSelector(state => state.constructorTests.newTaskID)
     const isAdmin = (useSelector(state => state.auth.access) === 2)
     let { id } = useParams()
     let history = useHistory();
     id = parseInt(id)
+
+
 
     useEffect(() => {
         if (Number.isInteger(id)) {
@@ -60,26 +61,24 @@ export default function TestConstructorSetting(props) {
     }
 
     const save = () => {
-        const dataTask = getInputsFields(taskLinks)
         const type = theTaskType
-        saveTask(dispatch, dataTask, id, type)
+        saveTask(dispatch, theTask, id, type)
         setHasData(true)
+        history.push('new')
     }
 
     const preview = () => {
-        let previewTask
-        if (!previewMode) {
-            previewTask = getInputsFields(taskLinks)
-        }
-        dispatch({ type: "PREVIEW", preview: !previewMode, previewTask })
+        dispatch({ type: "PREVIEW", preview: !previewMode })
     }
 
     const deleteTheTask = () => {
         removeDataByID(dispatch, id, 'Tasks')
         newTheTask()
+        history.push('new')
     }
 
     const newTheTask = () => {
+        dispatch({type:"NEW_TASK_ID",id:'new'})
         history.push('new')
     }
 
@@ -95,13 +94,13 @@ export default function TestConstructorSetting(props) {
                 {!previewMode && <Button
                     onClick={newTheTask}
                     variant="contained" color="primary">+ New</Button>}
-                <Button
+                {previewMode && <Button
                     onClick={save}
-                    variant="contained" color="primary">Save</Button>
+                    variant="contained" color="primary">save</Button>}
                 <Button
                     onClick={preview}
                     variant="contained" color="primary">
-                    {previewMode ? "Edit" : "Preview"}</Button>
+                    {previewMode ? "Edit" : "Preview & Save"}</Button>
             </div>
             {dialogWindow(dialogOptions, setDialogOptions,
                 { action: "REMOVE_THE_TASK", id })}

@@ -5,8 +5,6 @@ import { userBaned, userRemove, removeDataByID } from '../../API/adminisrator'
 import DialogWindow from './DialogWindow'
 
 export const dialogWindow = (openState, setOpenState, data) => {
-    console.log(data);
-    
     if (openState) {
         return createPortal(<DialogWindow data={data} closed={() => setOpenState(false)} />,
             document.getElementById('second'))

@@ -4,7 +4,7 @@ export const axios = Axios.create({
     baseURL: 'http://185.87.194.11:3333/',
 });
 
-export const dataBaseNameOnServer = { 'Users': 'users', 'Tasks': 'the_tasks', 'Tests': 'test' }
+export const dataBaseNameOnServer = { 'Users': 'users', 'Tasks': 'the_tasks', 'Tests': 'tests' }
 
 //Manage Auth
 export const setJWT = (token) => {
@@ -43,4 +43,5 @@ export const REMOVE_USER = '/userRemove'
 //TasksConstructor
 export const TASK = '/task'
 export const SAVE_TASK = '/saveTask'
+export const UPLOAD_PIC = '/uploadPic'
 

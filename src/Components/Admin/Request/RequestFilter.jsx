@@ -6,7 +6,7 @@ import { Selects } from '../../../Style/elements'
 import { getDataWithFilter } from '../../../API/adminisrator'
 
 function FilterForm(data) {
-    const [dataType, setData] = useState(data.selectItems[0])
+    const [dataType, setDataType] = useState(data.selectItems[0])
     const dispatch = useDispatch()
     const runRequest = getDataWithFilter(dispatch)
     const getFields = () => {
@@ -14,7 +14,7 @@ function FilterForm(data) {
     }
 
     useEffect(()=>{
-        setData(data.selectItems[0])
+        setDataType(data.selectItems[0])
     },[data])
 
     
@@ -24,11 +24,12 @@ function FilterForm(data) {
         getFields().forEach(element => {
             element.value = ''
         });
-        setData(data.selectItems[0])
+        setDataType(data.selectItems[0])
     }
 
     const setDataHandler = event => {
-        setData(event.target.value)
+        setDataType(event.target.value)
+        console.log(dataType);
     }
 
     const selectProps = {
@@ -39,7 +40,7 @@ function FilterForm(data) {
     }
 
     const enterRequest = () => {
-        console.log(23);
+        console.log(data);
         
         let body = {
             fields: []
@@ -48,7 +49,7 @@ function FilterForm(data) {
             if (element.value) {
                 body.fields[element.id] = element.value
             }
-        })
+        }) 
         body.filter = dataType
         body.dataBaseName = data.dataBaseName
         dispatch({ type: "CHANGE_DATA_TYPE", dataType: data.dataBaseName })

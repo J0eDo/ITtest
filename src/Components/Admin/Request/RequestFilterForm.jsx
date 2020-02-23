@@ -42,7 +42,7 @@ const testListFilter = {
             label: 'id'
         },
         {
-            label: 'testname'
+            label: 'testName'
         },
         {
             label: 'tag'
@@ -52,7 +52,7 @@ const testListFilter = {
         'finished',
         'not finished',
     ],
-    dataBaseName: dataName.THE_TASKS
+    dataBaseName: dataName.TEST_LIST
 }
 
 const RequestDatabaseForm = (type) => {

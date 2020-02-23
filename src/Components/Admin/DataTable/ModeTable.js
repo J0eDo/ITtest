@@ -26,7 +26,7 @@ export const actions = {
 
 }
 
-const redirectPath = path => id=>path(id)
+const redirectPath = path => id => path(id)
 
 export function columnConvert(column, dataType) {
     let columns
@@ -75,10 +75,14 @@ export const ModeTable = {
             { id: 'column4', numeric: true, disablePadding: false, label: 'status' },
         ],
         remote: [
-            { id: actions.theTasks.ADD, label: 'Add', alwaysActiv: true, 
-            withDialog: false, path: redirectPath((id)=>`/task-constructor/new`) },
-            { id: actions.theTasks.CHANGE, label: 'Changed', alwaysActiv: false, 
-            withDialog: false, path: redirectPath((id)=>`/task-constructor/${id}`) },
+            {
+                id: actions.theTasks.ADD, label: 'Add', alwaysActiv: true,
+                withDialog: false, path: redirectPath((id) => `/task-constructor/new`)
+            },
+            {
+                id: actions.theTasks.CHANGE, label: 'Changed', alwaysActiv: false,
+                withDialog: false, path: redirectPath((id) => `/task-constructor/${id}`)
+            },
             { id: actions.theTasks.REMOVE, label: 'Remove', alwaysActiv: false, withDialog: true },
         ]
     },
@@ -93,8 +97,14 @@ export const ModeTable = {
             { id: 'column4', numeric: true, disablePadding: false, label: 'status' },
         ],
         remote: [
-            { id: actions.test.ADD, label: 'Add', alwaysActiv: true, withDialog: false },
-            { id: actions.test.CHANGE, label: 'Changed', alwaysActiv: false, withDialog: false },
+            {
+                id: actions.test.ADD, label: 'Add Test', alwaysActiv: true,
+                withDialog: false, path: redirectPath((id) => `/test-constructor/new`)
+            },
+            {
+                id: actions.test.CHANGE, label: 'Changed', alwaysActiv: false,
+                withDialog: false, path: redirectPath((id) => `/test-constructor/${id}`)
+            },
             { id: actions.test.REMOVE, label: 'Remove', alwaysActiv: false, withDialog: true },
         ]
     }
