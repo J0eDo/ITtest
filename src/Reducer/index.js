@@ -5,14 +5,16 @@ import { formatTable } from './CustomMiddlewar'
 import auth from './auth'
 import admin from './admin'
 import notification from './notification'
-import constructorTests from './constructorTest'
+import constructorTheTask from './constructorTheTask'
+import constructorTest from './constructorTest'
 
 
 const reducer = combineReducers({
     admin,
     auth,
     notification,
-    constructorTests
+    constructorTheTask,
+    constructorTest
 })
 const defaultState = () => {
     if (localStorage.getItem('token')) {

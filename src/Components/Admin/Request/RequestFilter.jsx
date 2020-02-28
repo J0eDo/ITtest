@@ -4,6 +4,9 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Selects } from '../../../Style/elements'
 import { getDataWithFilter } from '../../../API/adminisrator'
+import SearchIcon from '@material-ui/icons/Search';
+import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
+
 
 function FilterForm(data) {
     const [dataType, setDataType] = useState(data.selectItems[0])
@@ -15,6 +18,7 @@ function FilterForm(data) {
 
     useEffect(()=>{
         setDataType(data.selectItems[0])
+        enterRequest()
     },[data])
 
     
@@ -29,19 +33,16 @@ function FilterForm(data) {
 
     const setDataHandler = event => {
         setDataType(event.target.value)
-        console.log(dataType);
+        enterRequest()
     }
 
     const selectProps = {
         items: data.selectItems,
         dataType,
         setDataHandler,
-        selectID: 'filterRequestData'
     }
 
     const enterRequest = () => {
-        console.log(data);
-        
         let body = {
             fields: []
         }
@@ -75,12 +76,13 @@ function FilterForm(data) {
                     Selects(selectProps)
                 }
             </div>
-            <Button variant="outlined" color="primary"
-                onClick={enterRequest}
+            <Button variant="outlined" color="primary"  variant="contained" 
+                style={{marginRight:'1rem'}}
+                onClick={enterRequest} startIcon={<SearchIcon />}
             >search</Button>
             <Button variant="outlined" color="primary"
-                onClick={filtersReset}
-            >reset filter</Button>
+                onClick={filtersReset}   startIcon={<YoutubeSearchedForIcon />}
+            >reset</Button>
         </React.Fragment>
     )
 }

@@ -13,7 +13,6 @@ export default function RequestBody() {
         dataType,
         setDataHandler,
         items: dataNames,
-        selectID: 'selectDataType'
     }
     return (
         <div>

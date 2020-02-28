@@ -1,52 +1,109 @@
-.lineConteiner{
-    display: flex;
+.lineConteiner {
+    display  : flex;
     flex-flow: row nowrap;
-    margin: auto;
-    .tableConteiner{
-        margin: auto;
-        flex-grow: 5;
-        height: 90%;
+    margin   : auto;
+
+    .tableConteiner {
+        .changedRow{
+            background-color: yellow;
+        }
+        margin          : auto;
+        flex-grow       : 5;
+        height          : 90%;
         background-color: rgb(245, 239, 188);
-        *{
+
+        * {
             margin: auto;
         }
     }
-    .remote{
+
+    .remote {
+        margin          : auto;
+        flex-grow       : 1;
+        height          : 90%;
+        display         : flex;
+        flex-flow       : column, nowrap;
+        justify-content : center;
+        align-items     : center;
+        background-color: rgb(245, 238, 177);
+    }
+}
+
+.lineRemote {
+    text-align: left;
+    margin    : .5rem 1rem 0 0;
+}
+
+.testGeneral_conteiner {
+    display        : flex;
+    flex-flow      : row wrap;
+    margin         : auto;
+    justify-content: space-around;
+    align-items    : center;
+}
+
+.downloadBlock {
+
+    margin-bottom: .5rem;
+    border-radius: 3px;
+/*     border:1px solid grey; */
+    font-size: 200%;
+    .poster{
+        background-size: contain;
+        width: 100px;
+        height: 100px;
+        font-weight:700 ;   
+    }
+    .bg{
+        width: 200px;
+        height: 50px;
+        background-color: blue;
+    }
+    * {
+        width : 100%;
+        height: 100%;
+        text-align: center;
         margin: auto;
-        flex-grow: 1;
-        height: 90%;
+    }
+    .loadImg{
+        font-size: small;
+        border: 1px inset black;
         display: flex;
-        flex-flow: column,nowrap;
-        justify-content: center;
-        align-items: center;
-        background-color:rgb(245, 238, 177);
+        div{
+            height: 2rem;
+            display: block;
+            margin: auto;
+        }
     }
-}
-.lineRemote{
-    text-align: right;
-    margin: .5rem 1rem 0 0;
 }
 
-.testGeneral_conteiner{
-    display: flex;
-    flex-flow: row nowrap;
-    margin: auto;
-    justify-content: space-between;
-    align-items: center;
+.middleSetting {
+    text-align: center;
+    display   : flex;
+    flex-flow : column nowrap;
+
+    * {
+        margin-bottom: 1rem;
+    }
 }
 
-.downloadBlock{
-    width: 10rem;
-    height: 10rem;
-    background-color: rgb(199, 236, 185);
-    .label{
-        position: relative;
-        display: block;
-        margin: auto;
+
+/* .theTest_constructed__conteiner {
+    font-family: 'Merriweather', ;
+    padding: .8rem 1rem;
+    background-color: rgb(244, 245, 248);
+    border-radius: 12px;
+    .theTest_constructed {
+        width           : 300px;
+        height          : 3rem;
+        overflow        : hidden;
+        background-color: rgb(151, 195, 231);
+        border-radius   : 4px 10px 10px 4px;
+        display         : flex;
+
+        div {
+            font-size: 2rem;
+            margin: auto 1rem;
+        }
     }
-    input{
-        opacity: 0;
-        width: 10rem;
-        height: 10rem;
-    }
-}
+} */

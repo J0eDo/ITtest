@@ -1,0 +1,8 @@
+$white : rgb(239, 243, 243);
+$light :rgb(192, 221, 221);
+
+.btn{
+    font-weight: 400;
+    color:$white !important;
+    text-shadow: 0px 0px 1px $light;
+}

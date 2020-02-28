@@ -93,7 +93,7 @@ export const ModeTable = {
         columns: [
             { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
             { id: 'column2', numeric: true, disablePadding: false, label: 'testname' },
-            { id: 'column3', numeric: true, disablePadding: false, label: 'type' },
+            { id: 'column3', numeric: true, disablePadding: false, label: 'complexity' },
             { id: 'column4', numeric: true, disablePadding: false, label: 'status' },
         ],
         remote: [

@@ -35,7 +35,6 @@ export const Selects = (prop) => (
         style={{
             minWidth: '13rem',
         }}
-        id={prop.selectID}
         value={prop.dataType}
         onChange={prop.setDataHandler}
     >
@@ -58,6 +57,27 @@ export const SimpleCheckbox = (props) => (
         label={props.label}
     />
 )
+
+export const theTestBtn = ({ complexity, testName, imgBase64, handler }) => {
+
+    const onClickBlock = e => {
+        const classes =  e.currentTarget.classList
+       classes.add('theTestBlock_click')
+        setTimeout(() => {
+           classes.toggle('theTestBlock_click')
+            if(handler){
+                handler()
+            }
+        }, 500);
+    }
+    return (
+        <div className='theTestBlock' onClick={onClickBlock}>
+            {imgBase64 && <img src={`data:image/gif;base64,${imgBase64}`} ></img>}
+            <p style={{ fontWeight: `${150 * (complexity + 1)}` }}>
+                {testName}
+            </p>
+        </div>)
+}
 
 
 

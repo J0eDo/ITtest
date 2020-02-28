@@ -39,6 +39,14 @@ export default function (action) {
                     removeDataByID(dispatch, id, dataName)
                 }
             }
+        case actionsTable.test.REMOVE:
+            return {
+                title: "Удаление теста!",
+                body: (id) => `Вы уверены что хотите УДАЛИТЬ тест ID ${id}`,
+                handler: function (dispatch, id, dataName) {
+                    removeDataByID(dispatch, id, dataName)
+                }
+            }
 
         default:
             break;

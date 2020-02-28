@@ -4,7 +4,6 @@ import {
     BANED_UNBANED,
     REMOVE_USER,
     REMOVE_DATA_BY_ID,
-    UPLOAD_PIC,
     dataBaseNameOnServer,
     errorServer
 } from './Axios'
@@ -21,15 +20,11 @@ export let getDataWithFilter = dispatch => data => {
             }
         })
             .then((response) => {
-                console.log(response.data, "NEWDATA");
                 if (response.data.message) {
                     dispatch({ type: "ADD_NOTIFICATION", message: data.message })
                 } else {
                     dispatch({ type: "SET_TABLE_DATA", tableData: response.data, table: data.dataBaseName })
-
-
                 }
-
             })
             .catch((error) => {
 
@@ -94,21 +89,3 @@ export let removeDataByID = (dispatch, id, dataName) => {
         }))
 }
 
-export const uploadPicture = file => {
-    
-    axios.get(UPLOAD_PIC,  file )
-        .then((response) => {
-            console.log(response);
-
-
-        })
-        .catch(() => {
-           
-        })
-}
-
-export const uploadFile = async (file) => {
-    const formData = new FormData();
-    formData.append('pic', file)
-    return await axios.get(UPLOAD_PIC, formData);
-}

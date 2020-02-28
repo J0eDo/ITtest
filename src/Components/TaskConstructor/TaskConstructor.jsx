@@ -14,9 +14,9 @@ import OneOfX from '../TheTask/TheTaskType/OneOfX'
 import DnD from '../TheTask/TheTaskType/DragAndDrop'
 
 
-export default function AnswerConstructor() {
-    let taskTypeNow = useSelector(state => state.constructorTests.taskType)
-    const preview = useSelector(state => state.constructorTests.preview)
+export default function TaskConstructor() {
+    let taskTypeNow = useSelector(state => state.constructorTheTask.taskType)
+    const preview = useSelector(state => state.constructorTheTask.preview)
 
     let constructorMode
     let previewMode

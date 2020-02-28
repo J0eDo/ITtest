@@ -1,26 +1,87 @@
 $white : rgb(239, 243, 243);
 $light :rgb(192, 221, 221);
 
-.navLink{
+.navLink {
     text-decoration: none;
-    color:black;
-    .btn{
+    color          : black;
+
+    .btn {
         font-weight: 400;
-        color:$white;
+        color      : $white;
         text-shadow: 0px 0px 1px $light;
     }
 }
 
-.infoCard{
-    margin: .05rem 1rem;
-    padding: 1rem;
+.infoCard {
+    margin    : .05rem 1rem;
+    padding   : 1rem;
     min-height: 10vh;
 }
 
-.successCard{
+.successCard {
     background-color: chartreuse !important;
 }
 
-.checkBox{
+.checkBox {
     margin: auto 5rem;
+}
+
+.theTestBlock {
+    font-family  : 'Merriweather';
+    background   : rgb(128, 141, 144);
+    background   : -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    background   : -webkit-linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    background   : linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    filter       : progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90", endColorstr="#aaa7b6", GradientType=1);
+    font-size    : 2rem;
+    display      : flex;
+    height       : 95px;
+    max-width        : 45vw;
+    overflow: hidden;
+    border-radius: 0 5px 5px 0;
+
+    img {
+        width : 95px;
+        height: 95px;
+    }
+
+    p {
+        padding: 0 1rem 0 .5rem;
+    }
+}
+
+.theTestBlock_click {
+    animation : .4s ease-in-out 0s clickTestBlock;
+    background: rgb(128, 141, 144);
+    background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    background: linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+    filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90", endColorstr="#aaa7b6", GradientType=1);
+}
+
+@keyframes clickTestBlock {
+    from {
+        background: rgb(128, 141, 144);
+        background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: linear-gradient(90deg, rgba(128, 141, 144, 1) 100%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90", endColorstr="#aaa7b6", GradientType=1);
+    }
+
+    25% {
+        color     : rgb(239, 243, 243);
+        background: rgb(128, 141, 144);
+        background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 56%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(128, 141, 144, 1) 56%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: linear-gradient(90deg, rgba(128, 141, 144, 1) 56%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90", endColorstr="#aaa7b6", GradientType=1)
+    }
+
+    70% {
+        background: rgb(128, 141, 144);
+        background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        background: linear-gradient(90deg, rgba(128, 141, 144, 1) 0%, rgba(170, 167, 182, 0.6814075972185749) 100%);
+        filter    : progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90", endColorstr="#aaa7b6", GradientType=1);
+    }
 }

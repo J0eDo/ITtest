@@ -15,7 +15,7 @@ function theVariant(classNames, text) {
 }
 
 export default function OneOfX() {
-    let _theTask = useSelector(state => state.constructorTests.theTask)
+    let _theTask = useSelector(state => state.constructorTheTask.theTask)
     const [variants, setVariants] = useState([])
     const [theTask, setTheTask] = useState({
         task: [],
@@ -26,18 +26,15 @@ export default function OneOfX() {
 
     function editVariant() {
         let newVariants = JSON.parse(JSON.stringify((_theTask)))
+     /*    console.log(newVariants.wrongs); */
+        
         newVariants.wrongs.push(newVariants.correct[0])
         newVariants = newVariants.wrongs.map(element => theVariant(['variantLI'], element))
-        console.log(newVariants, "POINT");
-
         newVariants = newVariants.sort(function () {
             return Math.random() - 0.5;
         });
 
         setVariants(newVariants)
-        console.log(newVariants);
-
-
     }
     useEffect(() => {
         if (_theTask) {

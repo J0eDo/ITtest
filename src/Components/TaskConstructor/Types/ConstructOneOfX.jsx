@@ -22,13 +22,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 let i
-
+let wrongs = []
 export default function ConstructOneOfX() {
     const classes = useStyles();
     const dispatch = useDispatch()
-    let theTask = useSelector(state => state.constructorTests.theTask)
-    let isServerLoad = useSelector(state => state.constructorTests.taskLoadedServer)
-
+    let theTask = useSelector(state => state.constructorTheTask.theTask)
     let [keysInput, setKeysInput] = useState(['wrong0'])
     let [bodyValues, setBodyValues] = useState({
         task: [],
@@ -36,19 +34,34 @@ export default function ConstructOneOfX() {
         wrongs: []
     })
     let { id } = useParams()
-
+    /*     useEffect(() => {
+            let a =  setInterval(() => {
+                console.log(bodyValues.wrongs.length,"interval");
+                
+            }, 2000);
+            return () => {
+               clearInterval(a)
+            };
+        }, [])
+        */
     const changeValues = (e, index, value, key) => {
         if (e.target) {
             bodyValues[key][index] = e.target.value
+            if (key === 'wrongs') wrongs[index] = e.target.value
         } else {
             bodyValues[key][index] = value
         }
         let newBody = { ...bodyValues }
         setBodyValues(newBody)
     }
+
+
     useEffect(() => {
         return () => {
-            dispatch({ type: "SET_THE_TASK", theTask: bodyValues }) 
+            bodyValues.wrongs = wrongs
+            console.log(wrongs);
+
+            dispatch({ type: "SET_THE_TASK", theTask: bodyValues })
         };
     }, [])
 
@@ -66,20 +79,25 @@ export default function ConstructOneOfX() {
 
     const addVariant = () => {
         let key = index => `wrong${index}`
-        let newKey
         i = 0
         do {
             ++i
         } while (keysInput.includes(key(i)));
-        newKey = key(i)
+        let newKey = key(i)
         keysInput.push(newKey)
         const newVariants = JSON.parse(JSON.stringify(keysInput))
         setKeysInput(newVariants)
     }
 
-    function removeKey(index) {
-        const newVariants = keysInput.filter(element => element !== keysInput[index])
+    const removeKey = _index => {
+        const newVariants = keysInput.filter(element => element !== keysInput[_index])
+        let _body = JSON.parse(JSON.stringify(bodyValues))
+        wrongs = JSON.parse(JSON.stringify(bodyValues.wrongs))
+        wrongs.splice(_index, 1)
+        setBodyValues(_body)
         setKeysInput(newVariants)
+
+
     }
 
     function wronge(index) {
@@ -92,7 +110,7 @@ export default function ConstructOneOfX() {
                     defaultValue={bodyValues.wrongs[index]}
                     label={`Неверный${index + 1}`}
                     multiline
-                    rows="1"
+                    rows="2"
                     variant="filled"
                 />
             </div>)
@@ -103,14 +121,19 @@ export default function ConstructOneOfX() {
                 <ButtonGroup>
                     <Button
                         style={{
-                            margin: 'auto 0'
+                            margin: 'auto 0',
+                            fontWeight: 800,
+                            color: 'brown'
                         }}
                         variant="contained" onClick={() => removeKey(index)} >-</Button>
                     <Button
                         style={{
-                            margin: 'auto 0'
+                            margin: 'auto 0',
+                            fontWeight: 800,
+                            color: 'green'
+
                         }}
-                        variant="contained" onClick={() => addVariant(index)} >+</Button>
+                        variant="contained" onClick={() => addVariant(index)} >&#x2B;</Button>
                 </ButtonGroup>
             )
         }
@@ -118,11 +141,19 @@ export default function ConstructOneOfX() {
             return (
                 <Button
                     style={{
-                        margin: 'auto 0'
+                        margin: 'auto 0',
+                        fontWeight: 800,
+                        color: 'brown'
                     }}
                     variant="contained" onClick={() => addVariant(index)} >+</Button>)
         } else {
-            return (<Button variant="contained" onClick={() => removeKey(index)} >-</Button>)
+            return (<Button variant="contained"
+                style={{
+                    margin: 'auto 0',
+                    fontWeight: 800,
+                    color: 'brown'
+                }}
+                onClick={() => removeKey(index)} >&#x2D;</Button>)
         }
     }
 
@@ -144,7 +175,7 @@ export default function ConstructOneOfX() {
                     defaultValue={bodyValues.correct}
                     label={`Верный`}
                     multiline
-                    rows="1"
+                    rows="2"
                     variant="filled"
                 />
                 {

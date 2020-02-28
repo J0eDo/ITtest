@@ -1,6 +1,6 @@
 //Libarys
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch, useState } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { NavLink } from "react-router-dom";
 //HOC
@@ -19,14 +19,16 @@ import Menu from '@material-ui/core/Menu';
 import { MenuBadge } from '../../Style/elements'
 import './navMenu.scss'
 import LoginIcon from '@material-ui/icons/ExitToApp';
+import Fade from '@material-ui/core/Fade';
 //Components
 import AuthPanel from '../AuthorizationPanel'
+import { Button, Badge } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    marginBottom:'1rem'
+    marginBottom: '1rem'
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -38,8 +40,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function NavMenu() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorProfile, setAnchorProfile] = React.useState(null);
+  const openProfile = Boolean(anchorProfile);
+  const [anchorAdmin, setAnchorAdmin] = React.useState(null);
+
   const dispatch = useDispatch()
   const modeAuth = useSelector(state => state.auth.mode)
   const isAuth = useSelector(state => state.auth.isAuth)
@@ -52,27 +56,41 @@ export default function NavMenu() {
   }, [])
 
 
-  const handleMenu = event => {
-    setAnchorEl(event.currentTarget);
+  const handleProfileMenu = event => {
+    console.log(event.currentTarget);
+
+    setAnchorProfile(event.currentTarget);
   }
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleCloseProfileMenu = () => {
+    setAnchorProfile(null);
   }
+
+  const handleCloseAdminMenu = () => {
+    setAnchorAdmin(null);
+  }
+
+  const handleAdminMenu = event => {
+    console.log(event.currentTarget);
+
+    setAnchorAdmin(event.currentTarget);
+  }
+
 
   function exitAccount() {
-    handleClose()
+    handleCloseProfileMenu()
     dispatch({ type: "UNAUTHORIZATED" })
   }
 
   function openAuthWindow(mode) {
-    handleClose()
+    handleCloseProfileMenu()
     dispatch({ type: "SET_AUTH_MODE", mode })
   }
 
+
   const authProfileMenuItem = () => (
     <div>
-      <MenuItem onClick={handleClose}>
+      <MenuItem onClick={handleCloseProfileMenu}>
         <NavLink to='/profile' className='navLink'>
           Профиль
         </NavLink>
@@ -95,7 +113,15 @@ export default function NavMenu() {
       return createPortal(<AuthPanel />, document.getElementById('second'))
   }
 
-  const adminBar = () => MenuBadge("Администрация", "/admin")
+  const adminBar = () => {
+    /*   MenuBadge("Администрация", "/admin") */
+    return (
+      <Badge>
+
+
+      </Badge>
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -105,21 +131,24 @@ export default function NavMenu() {
             IT-test
           </Typography>
           <div>
+            <Button onClick={handleAdminMenu}
+              className='btn'>Администрация</Button>
             {admin(adminBar, accessLevel)}
             {MenuBadge("Главная", "/")}
             {MenuBadge("Тесты", "/tests")}
+
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
-              onClick={handleMenu}
+              onClick={handleProfileMenu}
               color="inherit"
             >
               {isAuth ? <AccountCircle /> : <LoginIcon />}
             </IconButton>
+
             <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
+              anchorEl={anchorProfile}
               anchorOrigin={{
                 vertical: 'top',
                 horizontal: 'right',
@@ -129,14 +158,36 @@ export default function NavMenu() {
                 vertical: 'top',
                 horizontal: 'right',
               }}
-              open={open}
-              onClose={handleClose}
+              open={openProfile}
+              onClose={handleCloseProfileMenu}
             >
               {
                 isAuth ? authProfileMenuItem() :
                   noAuthProfileMenuItem()
               }
             </Menu>
+            < Menu
+              anchorEl={anchorAdmin}
+              getContentAnchorEl={null}
+              keepMounted
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              variant='selectedMenu'
+              TransitionComponent={Fade}
+              open={Boolean(anchorAdmin)} onClose={handleCloseAdminMenu}>
+              <MenuItem onClick={handleCloseAdminMenu}>
+                <NavLink className='navLink' to='/admin'> База данных</NavLink> </MenuItem>
+              <MenuItem onClick={handleCloseAdminMenu}><
+                NavLink className='navLink' to='/task-constructor/:new/'> Создать задание</NavLink></MenuItem>
+              <MenuItem onClick={handleCloseAdminMenu}>
+                <NavLink className='navLink' to='/test-constructor/:new'> Создать тест</NavLink></MenuItem>
+            </Menu >
           </div>
         </Toolbar>
       </AppBar>
