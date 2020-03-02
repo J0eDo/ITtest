@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import OneOfX from './TheTaskType/OneOfX'
+import { useDispatch } from 'react-redux'
 
+export default function TheTask({ task }) {
+    let component
+    const dispatch = useDispatch()
 
-export default function TheTask() {
+    useEffect(() => {
+        task&&dispatch({ type: 'SET_THE_TASK', theTask: task.body })
+    }, [task])
+
+    const setTypeTask = type => {
+       
+        switch (task.type) {
+            case 'Test':
+                return <OneOfX />
+            default:
+                break;
+        }
+    }
     return (
         <div>
-            I task
+            {task && setTypeTask(task.type)}
         </div>
     )
 }

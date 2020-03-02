@@ -59,7 +59,6 @@ export const SimpleCheckbox = (props) => (
 )
 
 export const theTestBtn = ({ complexity, testName, imgBase64, handler }) => {
-
     const onClickBlock = e => {
         const classes =  e.currentTarget.classList
        classes.add('theTestBlock_click')
@@ -71,7 +70,7 @@ export const theTestBtn = ({ complexity, testName, imgBase64, handler }) => {
         }, 500);
     }
     return (
-        <div className='theTestBlock' onClick={onClickBlock}>
+        <div className='theTestBlock' onClick={onClickBlock} key={testName}>
             {imgBase64 && <img src={`data:image/gif;base64,${imgBase64}`} ></img>}
             <p style={{ fontWeight: `${150 * (complexity + 1)}` }}>
                 {testName}

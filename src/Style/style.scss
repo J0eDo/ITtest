@@ -36,7 +36,7 @@ $light :rgb(192, 221, 221);
     font-size    : 2rem;
     display      : flex;
     height       : 95px;
-    max-width        : 45vw;
+    min-width        : 300px;
     overflow: hidden;
     border-radius: 0 5px 5px 0;
 

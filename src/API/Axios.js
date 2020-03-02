@@ -31,7 +31,8 @@ export const errorServer = (dispatch) => {
 }
 
 
-//Route
+//                      Route                           \\
+//Authorization
 export const REGISTRATION = '/registration'
 export const LOGIN = '/login'
 export const ACCOUNT_INFO = '/accountInfo'
@@ -40,7 +41,7 @@ export const GET_DATA_BY_NAME = '/getDataByName'
 export const REMOVE_DATA_BY_ID = '/removeDataByID'
 export const BANED_UNBANED = '/userSuccess'
 export const REMOVE_USER = '/userRemove'
-//TasksConstructor
+//Tasks/Tests Constructor
 export const TASK = '/task'
 export const SAVE_TASK = '/saveTask'
 export const UPLOAD_PIC = '/uploadPic'
@@ -50,3 +51,6 @@ export const GET_TEST = '/getTest'
 export const GET_FREE_TASK = '/freeTasks'
 export const ATTACH_TASK = '/attachTask'
 export const DETACH_TASK = '/dettachTask'
+//Passing the test
+export const GET_TEST_LIST = '/getTestList'
+export const GET_THE_TEST = '/getTheTest'

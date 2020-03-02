@@ -1,3 +1,5 @@
+let resultTest = []
+
 const constructorTheTask = (state, action) => {
     let newState = { ...state }
     switch (action.type) {
@@ -17,12 +19,23 @@ const constructorTheTask = (state, action) => {
         case "NEW_TASK_ID":
             newState.newTaskID = action.id
             return newState
-
+        case "SET_VARIANT":
+            newState.isCorrectly = action.isCorrectly
+            newState.btnNextActive = action.btnNextActive
+            return newState
+        case "NEXT_TASK":
+            newState.correctlyAnswer += +newState.isCorrectly
+            return newState
+        case "RESULT":
+            newState.result = [newState.correctlyAnswer, action.numTasks]
+            return newState
         default:
             newState.newTaskID = undefined
             newState.taskType = "Test"
             newState.theTask = undefined
             newState.preview = false
+            newState.resultTest = resultTest
+            newState.correctlyAnswer = 0
             return newState
     }
 }

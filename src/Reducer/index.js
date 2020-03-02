@@ -5,7 +5,7 @@ import { formatTable } from './CustomMiddlewar'
 import auth from './auth'
 import admin from './admin'
 import notification from './notification'
-import constructorTheTask from './constructorTheTask'
+import theTask from './theTask'
 import constructorTest from './constructorTest'
 
 
@@ -13,7 +13,7 @@ const reducer = combineReducers({
     admin,
     auth,
     notification,
-    constructorTheTask,
+    theTask,
     constructorTest
 })
 const defaultState = () => {

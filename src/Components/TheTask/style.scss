@@ -7,6 +7,7 @@
 }
 
 .variantLI {
+  cursor: pointer;
   background-color: rgb(109, 139, 163);
   border-radius: 5px;
   list-style-position: inside;
@@ -19,25 +20,21 @@
 
 .variantLI_select {
     animation:.4s linear 0s selectON;
-    font-weight: 400;
-    font-size: 110%;
+    font-weight: 600;
     color: black;
 }
 
 @keyframes selectON {
   0%{
     font-weight: 100;
-    font-size: 100%;
     color: black;
   }
   50%{
-    font-weight: 400;
-    font-size: 125%;
+    font-weight: 200;
     color: white;
   }
   100% {
-    font-weight: 400;
-    font-size: 110%;
+    font-weight: 600;
     color: black;
   }
 }

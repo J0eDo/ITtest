@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import '../style.scss'
 
 const SELECT_CLASS = 'variantLI_select'
@@ -7,7 +7,6 @@ const SELECT_CLASS = 'variantLI_select'
 function theVariant(classNames, text) {
     return {
         toggle: () => {
-
         },
         classNames
         , text
@@ -15,7 +14,8 @@ function theVariant(classNames, text) {
 }
 
 export default function OneOfX() {
-    let _theTask = useSelector(state => state.constructorTheTask.theTask)
+    let _theTask = useSelector(state => state.theTask.theTask)
+    const dispatch = useDispatch()
     const [variants, setVariants] = useState([])
     const [theTask, setTheTask] = useState({
         task: [],
@@ -26,26 +26,27 @@ export default function OneOfX() {
 
     function editVariant() {
         let newVariants = JSON.parse(JSON.stringify((_theTask)))
-     /*    console.log(newVariants.wrongs); */
-        
         newVariants.wrongs.push(newVariants.correct[0])
         newVariants = newVariants.wrongs.map(element => theVariant(['variantLI'], element))
         newVariants = newVariants.sort(function () {
             return Math.random() - 0.5;
         });
-
         setVariants(newVariants)
     }
+
     useEffect(() => {
         if (_theTask) {
+            dispatch({ type: 'SET_VARIANT' })
             setTheTask(JSON.parse(JSON.stringify((_theTask))))
             editVariant()
         }
     }, [_theTask])
 
     const changeVariantEvent = e => {
-        let indexTarget = parseInt(e.target.getAttribute('index'))
+        let isCorrectly = e.target.innerHTML === theTask.correct[0]
+        dispatch({ type: 'SET_VARIANT', isCorrectly, btnNextActive: true })
 
+        let indexTarget = parseInt(e.target.getAttribute('index'))
         variants.forEach((element, index) => {
             if (index === indexTarget &&
                 !element.classNames.includes(SELECT_CLASS)) {
@@ -53,7 +54,7 @@ export default function OneOfX() {
             } else if (index !== indexTarget &&
                 element.classNames.includes(SELECT_CLASS)) {
                 let removeIndex = element.classNames.indexOf(SELECT_CLASS)
-                element.classNames.splice(removeIndex,1)
+                element.classNames.splice(removeIndex, 1)
             }
         });
 

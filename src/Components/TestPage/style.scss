@@ -1,0 +1,35 @@
+.testList{
+    display: flex;
+    flex-flow: row wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: space-around;
+    
+    .theTestBlock{
+        width: 45%;
+        min-width: 400px;
+        margin: .6rem;
+    }
+}
+
+h1{
+    text-align: center;
+}
+
+.theTest_conteiner{
+    margin: 0;
+    padding: 1rem;
+}
+
+.remotePanel{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    *{
+        margin: 1rem;
+    }
+    .remotePanel_btn{
+        margin: 1rem;
+    }
+}

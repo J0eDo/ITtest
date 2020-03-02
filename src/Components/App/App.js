@@ -18,6 +18,8 @@ import AdminPage from '../Admin'
 import SnackBar from '../Snackbar/Snackbar'
 import TaskConstructor from '../TaskConstructor/TaskConstructor'
 import TestConstructor from '../TestConstructor/TestConstructor'
+import PassingTest from '../TestPage/PassingTest'
+import ResultPage from '../ResultPage/ResultPage'
 
 
 
@@ -34,6 +36,8 @@ function App() {
                     <Route path="/admin" component={AdminPage} />
                     <Route path="/task-constructor/:id" component={TaskConstructor} />
                     <Route path="/test-constructor/:id" component={TestConstructor} />
+                    <Route path="/test-passing/:testName" component={PassingTest} />
+                    <Route path="/resultTest" component={ResultPage} />
                 </Switch>
             </main>
             <SnackBar />

@@ -70,7 +70,6 @@ export default function TestGeneral(theTest) {
         items: statusesTest,
         dataType: statusTest,
         setDataHandler: setStatusHandler,
-        selectID: 'I refused id'
     }
 
     const saveTest = () => {
@@ -109,7 +108,7 @@ export default function TestGeneral(theTest) {
                         rows="1"
                         variant="filled"
                     />
-                    {/*  {Selects(selectStatusProps)}  */}
+                      {Selects(selectStatusProps)}  
                 </div>
                 {isNewTest &&
                     <div className='downloadBlock'>
