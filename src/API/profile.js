@@ -37,7 +37,7 @@ export const registration = dispatch => {
 export const login = dispatch => {
     const email = document.getElementById('email').value
     const password = document.getElementById('password').value
-    await axios.get(LOGIN, {
+    axios.get(LOGIN, {
         params: {
             email, password
         }
