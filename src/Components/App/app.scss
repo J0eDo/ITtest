@@ -3,11 +3,11 @@ main{
 }
 footer{
     padding: 0;
-    margin: 0;
+    margin: 2rem 0 0 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.432);
     width: 100%;
     height: 10vh;
-    background-color: rgb(6, 5, 8);
-    color:white;
+    background-color: rgba(211, 208, 218, 0.384);
     font-size: .8rem;
     .footer_contacts{
         display: flex;

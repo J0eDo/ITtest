@@ -18,9 +18,9 @@ export default function TestConstructorSetting(props) {
     const [dialogOptions, setDialogOptions] = useState(0)
     const [hasData, setHasData] = useState(false)
     const dispatch = useDispatch()
-    const theTask = useSelector(state => state.constructorTheTask.theTask)
-    const previewMode = useSelector(state => state.constructorTheTask.preview)
-    const newID = useSelector(state => state.constructorTheTask.newTaskID)
+    const theTask = useSelector(state => state.theTask.theTask)
+    const previewMode = useSelector(state => state.theTask.preview)
+    const newID = useSelector(state => state.theTask.newTaskID)
     const isAdmin = (useSelector(state => state.auth.access) === 2)
     let { id } = useParams()
     let history = useHistory();
@@ -35,13 +35,13 @@ export default function TestConstructorSetting(props) {
         } else {
             setHasData(false)
         }
-    }, [id])
+    }, [id,dispatch])
 
     useEffect(() => {
         if (newID) {
             history.push(newID + "")
         }
-    }, [newID])
+    }, [newID,history])
 
     const switchDataHandler = (value) => {
         setTheTaskType(value)
@@ -57,7 +57,6 @@ export default function TestConstructorSetting(props) {
         dataType: theTaskType,
         setDataHandler,
         items: taskTypes,
-        selectID: 'taskType'
     }
 
     const save = () => {
@@ -89,6 +88,7 @@ export default function TestConstructorSetting(props) {
             </div>
             <div className="remotePanel_second">
                 {(hasData && isAdmin && !previewMode) && <Button
+                    className = 'remotePanel_btn'
                     onClick={deleteTheTask}
                     variant="contained" color="primary">Remove</Button>}
                 {!previewMode && <Button

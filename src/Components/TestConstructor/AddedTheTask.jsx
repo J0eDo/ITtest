@@ -18,7 +18,7 @@ export default function AddedTheTask(theTest) {
     useEffect(() => {
         getFreeTask(dispatch, theTest.id, dataTableHandler)
         return ()=> dispatch({type:'SET_ROW_TASK'})
-    }, [theTest])
+    }, [theTest,dispatch])
 
     useEffect(() => {
         if(activBtn==='attach'){
@@ -70,13 +70,6 @@ export default function AddedTheTask(theTest) {
         setFreeTask(recipient)
     }
 
-    function activatorBtn(value, props){
-        if(value===props){
-            return true
-        }
-    }
-
-    const a = ()=>'dettach' !== activBtn
     return (
         <div className='lineConteiner'>
             <div className='tableConteiner'>

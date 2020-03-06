@@ -38,20 +38,19 @@ function normalizeDataAdminTable(action) {
         case dataName.Tasks:
             data.forEach(element => {
                 const { id, test_id, type, status } = element
-                
-                payload.push(createFormatUser(id, test_id||"not included", type, status||"Wait approwed"))
+
+                payload.push(createFormatUser(id, test_id || "not included", type, status || "Wait approwed"))
             });
             action.tableData = payload
             break;
         case dataName.Tests:
-            console.log(data,"MV");
-            
             data.forEach(element => {
                 const { id, testName, complexity, status } = element
                 payload.push(createFormatUser(id, testName, complexity, status))
             });
             action.tableData = payload
             break;
+        default: break;
     }
     return action
 }

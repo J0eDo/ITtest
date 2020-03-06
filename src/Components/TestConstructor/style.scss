@@ -2,7 +2,6 @@
     display  : flex;
     flex-flow: row nowrap;
     margin   : auto;
-
     .tableConteiner {
         .changedRow{
             background-color: yellow;
@@ -11,12 +10,10 @@
         flex-grow       : 5;
         height          : 90%;
         background-color: rgb(245, 239, 188);
-
         * {
             margin: auto;
         }
     }
-
     .remote {
         margin          : auto;
         flex-grow       : 1;
@@ -43,10 +40,8 @@
 }
 
 .downloadBlock {
-
     margin-bottom: .5rem;
     border-radius: 3px;
-/*     border:1px solid grey; */
     font-size: 200%;
     .poster{
         background-size: contain;
@@ -81,29 +76,7 @@
     text-align: center;
     display   : flex;
     flex-flow : column nowrap;
-
     * {
         margin-bottom: 1rem;
     }
 }
-
-
-/* .theTest_constructed__conteiner {
-    font-family: 'Merriweather', ;
-    padding: .8rem 1rem;
-    background-color: rgb(244, 245, 248);
-    border-radius: 12px;
-    .theTest_constructed {
-        width           : 300px;
-        height          : 3rem;
-        overflow        : hidden;
-        background-color: rgb(151, 195, 231);
-        border-radius   : 4px 10px 10px 4px;
-        display         : flex;
-
-        div {
-            font-size: 2rem;
-            margin: auto 1rem;
-        }
-    }
-} */

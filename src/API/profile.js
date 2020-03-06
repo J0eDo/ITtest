@@ -1,6 +1,7 @@
 import {
     axios, REGISTRATION,
     LOGIN, ACCOUNT_INFO,
+    GET_PROFILE, REWORK_TOKEN,
     errorServer
 } from './Axios'
 import { showErrorRegistration, showErrorLogin } from '../until/ErrorAuth'
@@ -19,6 +20,10 @@ export const registration = dispatch => {
             if (response.data.accessToken) {
                 const token = 'Bearer ' + response.data.accessToken.token
                 dispatch({ type: 'AUTH', token })
+                dispatch({  type: "ADD_NOTIFICATION", message: {
+                    severity: 'success',
+                    title: `Вы вошли`
+                }})
                 getUserData(dispatch)
             } else {
                 showErrorRegistration(response.data[0])
@@ -44,6 +49,10 @@ export const login = dispatch => {
             const token = 'Bearer ' + response.data.token
             dispatch({ type: 'AUTH', token })
             getUserData(dispatch)
+            dispatch({  type: "ADD_NOTIFICATION", message: {
+                severity: 'success',
+                title: `Вы вошли`
+            }})
         }).catch(() => showErrorLogin())
     }
     logined()
@@ -52,12 +61,40 @@ export const login = dispatch => {
 export const getUserData = async (dispatch) => {
     const getData = async () => {
         await axios.get(ACCOUNT_INFO)
-        .then((response) => {
-           dispatch({type:"GET_PROFILE", payload:response.data.userData})          
-        })
-        .catch(() => {
-            errorServer(dispatch)
-        })
+            .then((response) => {
+                dispatch({ type: "GET_PROFILE", payload: response.data.userData })
+            })
+            .catch(() => {
+                errorServer(dispatch)
+            })
     }
     getData()
 }
+
+export const getUserProfile = async (setUser, setAvatar) => {
+    let res = await axios.get(GET_PROFILE)
+    setUser(res.data.user)
+    if (res.data.file) {
+        setAvatar('data:image/gif;base64,' + res.data.file)
+    }
+}
+
+export const reworkToken = async ({ oldPassword, newPassword }, dispatch) => {
+    try {
+        let res = await axios.get(REWORK_TOKEN, { params: { oldPassword, newPassword } })
+        if (Array.isArray(res.data)) {
+            showErrorRegistration(res.data[0])
+        } else {
+            showErrorRegistration({}) 
+            dispatch({
+                type: "ADD_NOTIFICATION", message: {
+                    severity: 'success',
+                    title: `Пароль изменен`
+                }
+            })
+        }
+    } catch (error) {
+        errorServer(dispatch)
+    }
+}
+

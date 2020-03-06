@@ -1,34 +1,28 @@
 import {
     axios,
-    UPLOAD_PIC,
+    POST_FILE,
     GET_IMG,
 } from './Axios'
 
 
-export const uploadPicture = (file, name) => {
+export const downloadPicture = async (handler,pathFile, fileName) => {
+    return axios.get(GET_IMG, { params: { pathFile, fileName } })
+        .then((response) => {
+            handler(response.data.file);
+        }).catch(()=>console.log('WTF man -_-?'))
+        
+}
+
+
+export const uploadFile = async (file, pathFile, fileName) => {
     const formData = new FormData();
     formData.append('file', file)
-    formData.append('fileName', name)
+    formData.append('pathFile', pathFile)
+    formData.append('fileName', fileName)
     const config = {
         headers: {
             'content-type': 'multipart/form-data'
         }
     }
-    return axios.post(UPLOAD_PIC, formData, config)
-        .then((response) => {
-            console.log(response);
-        })
-        .catch(() => {
-
-        })
-}
-
-export const downloadPicture = (handler, fileName) => {
-    return axios.get(GET_IMG,{params:{fileName}})
-        .then((response) => {
-            handler(response.data, fileName);
-        })
-        .catch(() => {
-
-        })
+    await axios.post(POST_FILE, formData, config)
 }

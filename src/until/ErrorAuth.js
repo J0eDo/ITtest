@@ -7,6 +7,7 @@ export const showErrorRegistration = (error) => {
                 return 'никнейм'
             case 'password':
                 return 'пароль'
+            default: return null
         }
     }
     const validation = () => {
@@ -21,9 +22,13 @@ export const showErrorRegistration = (error) => {
                 return 'некоректен'
         }
     }
-   document.getElementById('errorReg').innerHTML= `${field()}:${validation()}`
+    const _field = field()
+    if (_field) {
+        document.getElementById('errorReg').innerHTML = `${field()}:${validation()}`
+    } else {
+        document.getElementById('errorReg').innerHTML = ''
+    }
 }
-
 export const showErrorLogin = () => {
-   document.getElementById('errorLogin').innerHTML= `Неверный логин или пароль`
+    document.getElementById('errorLogin').innerHTML = `Неверный логин или пароль`
 }

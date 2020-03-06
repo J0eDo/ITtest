@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { taskTypes } from './TaskConstructorSetting'
-
 //UI
 import { InfoCard } from '../../Style/elements'
 //Components
@@ -15,8 +14,8 @@ import DnD from '../TheTask/TheTaskType/DragAndDrop'
 
 
 export default function TaskConstructor() {
-    let taskTypeNow = useSelector(state => state.constructorTheTask.taskType)
-    const preview = useSelector(state => state.constructorTheTask.preview)
+    let taskTypeNow = useSelector(state => state.theTask.taskType)
+    const preview = useSelector(state => state.theTask.preview)
 
     let constructorMode
     let previewMode

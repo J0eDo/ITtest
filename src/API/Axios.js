@@ -27,21 +27,22 @@ export const errorServer = (dispatch) => {
         severity: 'error',
         title: 'Server Errror'
     }
-    dispatch({type: "ADD_NOTIFICATION", message})
+    dispatch({ type: "ADD_NOTIFICATION", message })
 }
 
-
 //                      Route                           \\
-//Authorization
+//User & Auth
 export const REGISTRATION = '/registration'
 export const LOGIN = '/login'
 export const ACCOUNT_INFO = '/accountInfo'
+export const GET_PROFILE = '/profile'
+export const REWORK_TOKEN = '/reworkToken'
 //Administrator
 export const GET_DATA_BY_NAME = '/getDataByName'
 export const REMOVE_DATA_BY_ID = '/removeDataByID'
 export const BANED_UNBANED = '/userSuccess'
 export const REMOVE_USER = '/userRemove'
-//Tasks/Tests Constructor
+//Tasks & Tests Constructor
 export const TASK = '/task'
 export const SAVE_TASK = '/saveTask'
 export const UPLOAD_PIC = '/uploadPic'
@@ -54,3 +55,6 @@ export const DETACH_TASK = '/dettachTask'
 //Passing the test
 export const GET_TEST_LIST = '/getTestList'
 export const GET_THE_TEST = '/getTheTest'
+export const GET_LAST_TEST = '/getLastTest'
+//Files
+export const POST_FILE = '/uploadImg'

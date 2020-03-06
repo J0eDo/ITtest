@@ -1,0 +1,65 @@
+.generalPage {
+    width : 97vw;
+    margin: auto;
+}
+
+.generalPage_conteiner {
+    display  : flex;
+    flex-flow: row wrap;
+
+    .welcome {
+        flex  : 1 2 400px;
+        margin: 0 .5rem .5rem .5rem;
+
+        img {
+            max-height: 300px;
+            float     : left;
+        }
+
+        div {
+            h3 {
+                margin:.5rem;
+            }
+
+            min-height: 200px;
+        }
+    }
+
+    .userConstructorBlock {
+        flex  : 1 2 500px;
+        margin: 0 .5rem .5rem .5rem;
+        max-height: 15rem;
+
+        img {
+            float : right;
+            height: 15rem;
+        }
+
+        h3 {
+            margin-left: 1rem;
+        }
+
+        p {
+            margin: .5rem;
+        }
+    }
+
+    .newTest {
+        min-height     : 200px;
+        display        : flex;
+        flex-flow      : column nowrap;
+        justify-content: space-between;
+        align-items    : center;
+        flex           : 1 1 400px;
+        margin         : .5rem;
+
+        h3 {
+            text-align: center;
+        }
+
+        .newTest_theTest {
+            width : 80%;
+            margin: auto;
+        }
+    }
+}

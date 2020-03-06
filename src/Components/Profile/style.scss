@@ -1,0 +1,72 @@
+.profile {
+    margin     : .5rem;
+    padding-top: .1rem;
+    .profile_ava {
+        flex     : 1 1 300px;
+        display  : flex;
+        flex-flow: column nowrap;
+        button {
+            margin: -.25rem .5rem .5rem .5rem;
+            max-width: 200px;
+        }
+        img {
+            margin       : 1rem .5rem;
+            border-radius: 5px;
+        }
+    }
+    .profile_info {
+        display  : flex;
+        flex-flow: row wrap;
+        margin   : auto;
+        .profile_block {
+            flex           : 5 2 150px;
+            height         : 15rem;
+            margin         : 1rem .5rem;
+            display        : flex;
+            flex-flow      : column nowrap;
+            justify-content: space-between;
+            .profile_password {
+                align-self     : start;
+                display        : flex;
+                flex-flow      : column nowrap;
+                justify-content: space-between;
+                .profile_password__form{
+                    display: flex;
+                    flex-flow: column;
+                    *{
+                        margin: .2rem 0;
+                    }
+                }
+                p{
+                    margin: .5rem auto;
+                    color: red;
+                }
+            }
+        }
+
+
+    }
+}
+
+.passingTests{
+    padding: .05rem 0;
+    margin: 0 .5rem;
+    div{
+        margin: auto;
+        width: min-content;
+    }
+}
+
+.profile_passingTest__title{
+    text-indent:1rem ;
+}
+
+.dropzone_btn{
+    opacity: 0; 
+    width: 100%;
+    position: absolute;
+    left: 0;
+    height: 45px;
+    top:0;
+}
+

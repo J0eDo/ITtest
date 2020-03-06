@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -15,14 +15,6 @@ function FilterForm(data) {
     const getFields = () => {
         return data.textFields.map(element => document.getElementById(`${element.label}`))
     }
-
-    useEffect(()=>{
-        setDataType(data.selectItems[0])
-        enterRequest()
-    },[data])
-
-    
-
 
     const filtersReset = () => {
         getFields().forEach(element => {
@@ -50,14 +42,18 @@ function FilterForm(data) {
             if (element.value) {
                 body.fields[element.id] = element.value
             }
-        }) 
+        })
         body.filter = dataType
         body.dataBaseName = data.dataBaseName
         dispatch({ type: "CHANGE_DATA_TYPE", dataType: data.dataBaseName })
         runRequest(body)
-      
-
     }
+
+    useEffect(() => {
+        setDataType(data.selectItems[0])
+        enterRequest()
+    }, [data.selectItems])
+
 
     return (
         <React.Fragment>
@@ -76,12 +72,12 @@ function FilterForm(data) {
                     Selects(selectProps)
                 }
             </div>
-            <Button variant="outlined" color="primary"  variant="contained" 
-                style={{marginRight:'1rem'}}
+            <Button variant="outlined" color="primary"
+                style={{ marginRight: '1rem' }}
                 onClick={enterRequest} startIcon={<SearchIcon />}
             >search</Button>
             <Button variant="outlined" color="primary"
-                onClick={filtersReset}   startIcon={<YoutubeSearchedForIcon />}
+                onClick={filtersReset} startIcon={<YoutubeSearchedForIcon />}
             >reset</Button>
         </React.Fragment>
     )

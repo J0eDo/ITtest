@@ -25,7 +25,7 @@ export default function PassingTest() {
 
     useEffect(() => {
         getTest()
-    }, [])
+    },[])
 
     const testInfo = () => (
         <div>

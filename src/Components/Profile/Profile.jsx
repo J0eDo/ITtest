@@ -1,32 +1,93 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState, useRef } from 'react';
+import './style.scss'
+import { useDispatch } from 'react-redux'
 //UI
-import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper';
-import { downloadPicture } from '../../API/fileAPI'
+import TextField from '@material-ui/core/TextField'
+import { uploadFile } from '../../API/fileAPI'
 //Component
+import defaultAvatar from '../../Content/img/programmer_ava.jpg'
+import { getUserProfile, reworkToken } from '../../API/profile'
 
-const useStyles = makeStyles(theme => ({
-    root: {}
-}));
+
+
+
 
 function Profile() {
-    const classes = useStyles();
-    const [img, setImg] = useState()
+    const [user, setUser] = useState()
+    const [avatarFile, setAvatarFile] = useState()
+    const dispatch = useDispatch()
+    const oldPassword = useRef()
+    const newPassword = useRef()
+    const passwords = {}
+
     useEffect(() => {
-        downloadPicture(handler)
+        getUserProfile(setUser, setAvatarFile)
     }, [])
-    const handler = data => {
-      /*   data = Buffer.from(data).toString('base64') */
-        console.log( data.file);
-        setImg(data.file)
+
+
+    const uploadAvatar = async (file) => {
+        await uploadFile(file, '/avatar/', user.username)
+        await getUserProfile(setUser, setAvatarFile)
     }
+
+    const refreshPassword = () => {
+        reworkToken(passwords,dispatch)
+        oldPassword.current.value = ''
+        newPassword.current.value = ''
+    }
+
     return (
-        <div className={classes.root}>
-            <Paper elevation={3}>
-                <h1>It Profile</h1>
-                {img && <img src={`data:image/gif;base64,${img}`}
-                    style={{ width: '10rem', height: '10rem' }}></img>}
+        <div>
+            <h1>Профиль</h1>
+            <Paper className='profile'>
+                <div className='profile_info'>
+                    <div className='profile_ava'>
+                        <img
+                            style={{ width: '200px', height: '250px' }}
+                            src={avatarFile || defaultAvatar} alt="avatar" />
+                        <Button
+                            variant='contained'
+                            style={{ height: '45px' }}>
+                            <div>
+                                <input type="file"
+                                    className='dropzone_btn'
+                                    onChange={e => uploadAvatar(e.target.files[0])}
+                                />  загрузить фото
+                            </div>
+                        </Button>
+                    </div>
+                    <div className='profile_block'>
+                        <p><small>ID:{user && user.id}</small><br />
+                            <strong>{user && user.username}</strong><br />
+                            <small>создан: {user && user.created_at.split(' ')[0]}</small>
+                        </p>
+                        <div className="profile_password">
+                            <div className='profile_password__form'>
+                                <TextField
+                                    ref={oldPassword}
+                                    onChange={e => passwords.oldPassword = e.target.value}
+                                    type='password' label="старый пароль" variant="outlined" />
+                                <TextField
+                                    ref={newPassword}
+                                    label="новый пароль" variant="outlined"
+                                    onChange={e => passwords.newPassword = e.target.value}
+                                />
+                            </div>
+                            <p id='errorReg'></p>
+                            <Button variant='contained' color='primary'
+                                onClick={refreshPassword}
+                            >OK</Button>
+                        </div>
+                    </div>
+                </div>
+            </Paper>
+            <h2 className='profile_passingTest__title'>Пройденные тесты</h2>
+            <Paper className='passingTests'>
+                <div>
+                    <h2>Пусто</h2>
+                </div>
             </Paper>
         </div>
     );

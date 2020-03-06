@@ -8,7 +8,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import TextField from '@material-ui/core/TextField';
+
 
 
 export const MenuBadge = (title, link) => (
@@ -35,7 +35,7 @@ export const Selects = (prop) => (
         style={{
             minWidth: '13rem',
         }}
-        value={prop.dataType}
+        defaultValue={prop.dataType}
         onChange={prop.setDataHandler}
     >
         {
@@ -60,18 +60,18 @@ export const SimpleCheckbox = (props) => (
 
 export const theTestBtn = ({ complexity, testName, imgBase64, handler }) => {
     const onClickBlock = e => {
-        const classes =  e.currentTarget.classList
-       classes.add('theTestBlock_click')
+        const classes = e.currentTarget.classList
+        classes.add('theTestBlock_click')
         setTimeout(() => {
-           classes.toggle('theTestBlock_click')
-            if(handler){
+            classes.toggle('theTestBlock_click')
+            if (handler) {
                 handler()
             }
-        }, 500);
+        }, 300);
     }
     return (
         <div className='theTestBlock' onClick={onClickBlock} key={testName}>
-            {imgBase64 && <img src={`data:image/gif;base64,${imgBase64}`} ></img>}
+            {imgBase64 && <img src={`data:image/gif;base64,${imgBase64}`} alt='loading...'></img>}
             <p style={{ fontWeight: `${150 * (complexity + 1)}` }}>
                 {testName}
             </p>

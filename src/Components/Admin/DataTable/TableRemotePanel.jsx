@@ -24,10 +24,12 @@ export default function TableRemotePanel(props) {
     }
 
     return (
-        <div className="remotePanel">
+        <div className="remoteTable">
             {
                 buttons.map(Element => (
                     <Button
+                        className='remoteTable_btn'
+                        variant='contained'
                         onClick={() => enterAction(Element.id, selectedID, Element.withDialog, Element.path)}
                         disabled={!(Element.alwaysActiv || selectedID)}
                         key={`${Element.id}`}>{Element.label}</Button>

@@ -1,10 +1,8 @@
 //Libarys
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch, useState } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { NavLink } from "react-router-dom";
-//HOC
-import admin from '../HOC/Admin'
 //API
 import { getUserData } from '../../API/profile'
 //UI
@@ -44,6 +42,7 @@ export default function NavMenu() {
   const openProfile = Boolean(anchorProfile);
   const [anchorAdmin, setAnchorAdmin] = React.useState(null);
 
+
   const dispatch = useDispatch()
   const modeAuth = useSelector(state => state.auth.mode)
   const isAuth = useSelector(state => state.auth.isAuth)
@@ -53,12 +52,10 @@ export default function NavMenu() {
     if (isAuth) {
       getUserData(dispatch)
     }
-  }, [])
+  }, [dispatch, isAuth])
 
 
   const handleProfileMenu = event => {
-    console.log(event.currentTarget);
-
     setAnchorProfile(event.currentTarget);
   }
 
@@ -71,8 +68,6 @@ export default function NavMenu() {
   }
 
   const handleAdminMenu = event => {
-    console.log(event.currentTarget);
-
     setAnchorAdmin(event.currentTarget);
   }
 
@@ -113,30 +108,19 @@ export default function NavMenu() {
       return createPortal(<AuthPanel />, document.getElementById('second'))
   }
 
-  const adminBar = () => {
-    /*   MenuBadge("Администрация", "/admin") */
-    return (
-      <Badge>
-
-
-      </Badge>
-    )
-  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h3" className={classes.title}>
-            IT-test
+          <Typography variant="h6" className={classes.title}>
+            IT-tasker
           </Typography>
           <div>
-            <Button onClick={handleAdminMenu}
-              className='btn'>Администрация</Button>
-            {admin(adminBar, accessLevel)}
+            {accessLevel > 1 && <Button onClick={handleAdminMenu}
+              className='btn'>Администрация</Button>}
             {MenuBadge("Главная", "/")}
             {MenuBadge("Тесты", "/tests")}
-
             <IconButton
               aria-label="account of current user"
               aria-controls="menu-appbar"
@@ -183,8 +167,8 @@ export default function NavMenu() {
               open={Boolean(anchorAdmin)} onClose={handleCloseAdminMenu}>
               <MenuItem onClick={handleCloseAdminMenu}>
                 <NavLink className='navLink' to='/admin'> База данных</NavLink> </MenuItem>
-              <MenuItem onClick={handleCloseAdminMenu}><
-                NavLink className='navLink' to='/task-constructor/:new/'> Создать задание</NavLink></MenuItem>
+              <MenuItem onClick={handleCloseAdminMenu}>
+                <NavLink className='navLink' to='/task-constructor/:new/'> Создать задание</NavLink></MenuItem>
               <MenuItem onClick={handleCloseAdminMenu}>
                 <NavLink className='navLink' to='/test-constructor/:new'> Создать тест</NavLink></MenuItem>
             </Menu >

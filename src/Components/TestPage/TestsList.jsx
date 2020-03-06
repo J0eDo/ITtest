@@ -30,18 +30,19 @@ function TestList() {
 
     const getData = async () => {
         let data = await getTestBtns()
-        setTests(data.tests)
+         setTests(data.tests) 
     }
 
     const getPosterTest = async () => {
         for (const test of tests) {
-            await downloadPicture(setImg, pictureName(test.testName));
+            const fileName = test.testName+'.jpg'
+            await downloadPicture(setImg,'/tests/img/',fileName);
         }
     }
 
     const setImg = (data) => {
-        imgBase64.push(data.file)
-        setImgBase64(JSON.parse(JSON.stringify(imgBase64)))
+        imgBase64.push(data)
+        setImgBase64(JSON.parse(JSON.stringify(imgBase64)))      
     }
 
     const passingTheTest = (data) => {

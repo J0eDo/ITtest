@@ -14,7 +14,8 @@ export default function ResultPage() {
         } else {
             setResult(`${resultTest[0]}/${resultTest[1]}`)
         }
-    }, [])
+    }, [history,resultTest])
+    
     return (
         <Paper>
             <h1>Тест пройден</h1>

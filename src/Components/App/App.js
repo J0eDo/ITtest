@@ -41,13 +41,13 @@ function App() {
                 </Switch>
             </main>
             <SnackBar />
-          {/*   <footer>
+             <footer>
                 <div className="footer_contacts">
                     <p>noreduard93@gmail.com</p>
                     <a href="https://github.com/J0eDo">github.com/J0eDo</a>
                     <p>+7(995)312-98-05</p>
                 </div>
-            </footer> */}
+            </footer> 
         </Router>
     </ThemeProvider>
     );
