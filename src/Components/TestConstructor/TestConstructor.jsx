@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useParams, useHistory } from 'react-router-dom'
+import './style.scss'
+//API
+import { getTestByID } from '../../API/testConstructor'
+//Components
 import AddedTheTask from './AddedTheTask'
 import TestGeneralProps from './TestGeneralProps'
 import { InfoCard } from '../../Style/elements'
-import { useParams, useHistory } from 'react-router-dom'
-import './style.scss'
-import { getTestByID } from '../../API/testConstructor'
 
 export default function TestConstructor() {
    const history = useHistory()

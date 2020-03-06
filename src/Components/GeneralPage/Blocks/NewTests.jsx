@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import Paper from '@material-ui/core/Paper'
-import { theTestBtn } from '../../../Style/elements'
+import { useHistory } from 'react-router-dom'
+//API
 import { lastTest } from '../../../API/content'
 import { downloadPicture } from '../../../API/fileAPI'
-import { useHistory } from 'react-router-dom'
+//Material UI
+import Paper from '@material-ui/core/Paper'
+//Components
+import { theTestBtn } from '../../../Style/elements'
+
 export default function NewTests() {
     const history = useHistory()
     const [testData, setTestData] = useState()

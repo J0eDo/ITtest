@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './style.scss'
 import { useDispatch } from 'react-redux'
-//UI
+//Material UI
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField'
+//API
 import { uploadFile } from '../../API/fileAPI'
+import { getUserProfile, reworkToken } from '../../API/profile'
 //Component
 import defaultAvatar from '../../Content/img/programmer_ava.jpg'
-import { getUserProfile, reworkToken } from '../../API/profile'
 
 
 

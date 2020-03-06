@@ -1,6 +1,9 @@
 import React from 'react'
-import FilterForm from './RequestFilter'
+//Until
 import { dataName } from '../DataTable/ModeTable'
+//Components
+import FilterForm from './RequestFilter'
+
 const userFilter = {
     textFields: [
         {

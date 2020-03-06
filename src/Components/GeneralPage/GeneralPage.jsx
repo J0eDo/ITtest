@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './style.scss'
-//Component
-//Until
-import { textShower } from '../../until/FileWork'
-import titleSite from '../../Content/text/titleSite.txt'
+//Components
 import Welcome from './Blocks/Welcome'
 import UserConstructorTask from './Blocks/UserConstructorTask'
 import NewTest from './Blocks/NewTests'

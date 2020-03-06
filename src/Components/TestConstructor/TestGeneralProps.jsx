@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+//Material UI
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
 import Slider from '@material-ui/core/Slider';
-import { uploadFile, downloadPicture } from '../../API/fileAPI'
-import Dropzone from 'react-dropzone'
+//API
 import { saveTest as save } from '../../API/testConstructor'
-import { Selects, theTestBtn } from '../../Style/elements'
+import { uploadFile, downloadPicture } from '../../API/fileAPI'
+//Until
 import { statusesTest, complexityLevel } from './TestConstructorSetting'
-import { useParams, useHistory } from 'react-router-dom'
+//Components
+import { Selects, theTestBtn } from '../../Style/elements'
+import Dropzone from 'react-dropzone'
 
-
-
-const pictureName = (testName, backgroundName) => `test_${testName}_Bg${backgroundName}`
-let _images
 let complexity_default
 
 export default function TestGeneral(theTest) {
@@ -46,7 +46,7 @@ export default function TestGeneral(theTest) {
 
     const sendPicture = (picture) => {
         uploadFile(picture[0], '/tests/img/', theTest.testName)
-            .then(() => downloadPicture(downloadPictureHandler, '/tests/img/', theTest.testName+'.jpg'))
+            .then(() => downloadPicture(downloadPictureHandler, '/tests/img/', theTest.testName + '.jpg'))
     }
 
     const downloadPictureHandler = (data) => {
@@ -84,14 +84,14 @@ export default function TestGeneral(theTest) {
                     {theTestBtn({ complexity, testName, imgBase64: images })}
                 </div>
                 <div className='middleSetting'>
-                    <p>Сложность: {complexityLevel[complexity]}</p> 
+                    <p>Сложность: {complexityLevel[complexity]}</p>
                     {(complexity_default || complexity_default === 0) && <Slider
                         defaultValue={complexity_default}
                         max={4}
                         getAriaValueText={setComplexity}
                         step={1}
 
-                    />} 
+                    />}
                     <TextField
                         style={{ margin: 'auto' }}
                         label={'введите название теста'}
@@ -99,7 +99,7 @@ export default function TestGeneral(theTest) {
                         rows="1"
                         variant="filled"
                     />
-                      {Selects(selectStatusProps)} 
+                    {Selects(selectStatusProps)}
                 </div>
                 {isNewTest &&
                     <div className='downloadBlock'>

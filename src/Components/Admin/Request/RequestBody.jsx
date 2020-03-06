@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+//Until
+import { dataNames } from '../DataTable/ModeTable'
+//Components
 import { Selects } from '../../../Style/elements'
 import requestFilterForm from './RequestFilterForm'
-import {dataNames} from '../DataTable/ModeTable'
 
 
 export default function RequestBody() {

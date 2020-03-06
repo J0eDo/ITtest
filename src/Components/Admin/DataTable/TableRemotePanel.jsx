@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import Button from '@material-ui/core/Button'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+//Material UI
+import Button from '@material-ui/core/Button'
+//Component
 import { dialogWindow } from '../../DialogWindow/Dialogs'
 
 

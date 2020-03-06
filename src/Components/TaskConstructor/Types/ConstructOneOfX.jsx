@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import Button from '@material-ui/core/Button'
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import React, { useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import '../style.scss'
+//Material UI
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -54,7 +54,7 @@ export default function ConstructOneOfX() {
         };
     }, [])
 
-
+   
 
 
     const addVariant = () => {
@@ -151,7 +151,7 @@ export default function ConstructOneOfX() {
     return (
         <div>
             <form className={classes.root} noValidate autoComplete="off">
-                <TextareaAutosize placeholder="Задание"
+                <TextField
                     className={classes.root}
                     onChange={(e) => changeValues(e, 0, null, 'task')}
                     defaultValue={bodyValues.task}

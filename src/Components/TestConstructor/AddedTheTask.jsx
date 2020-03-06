@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import TableTheTask from './TableTheTask'
 import { useDispatch, useSelector } from 'react-redux'
+//Material UI
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+//API
 import { getFreeTask, attachedTask, dettachedTask } from '../../API/testConstructor'
-
+//Components
+import TableTheTask from './TableTheTask'
 
 export default function AddedTheTask(theTest) {
     theTest = theTest[0]

@@ -1,7 +1,9 @@
 import React from 'react'
-import DataTable from './Table'
 import { useSelector } from 'react-redux'
-import { ModeTable,dataName } from './ModeTable'
+//Components
+import DataTable from './Table'
+//Until
+import { ModeTable, dataName } from './ModeTable'
 
 export default function TableConteiner() {
     const dataEnterType = useSelector(state => state.admin.dataType)

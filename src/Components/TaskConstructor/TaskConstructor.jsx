@@ -1,9 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+//Until
 import { taskTypes } from './TaskConstructorSetting'
-//UI
-import { InfoCard } from '../../Style/elements'
 //Components
+import { InfoCard } from '../../Style/elements'
 import RemoteConstructor from './RemoteConstructor'
 //              construct               //
 import ConstructOneOfX from './Types/ConstructOneOfX'

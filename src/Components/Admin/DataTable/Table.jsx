@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import './style.scss'
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 //Components
 import TableToolbar from './TableToolbar'
 import TableHeader from './TableHeader'
@@ -73,8 +72,8 @@ export default function EnhancedTable(props) {
   const buttonOption = props.option.remote
 
 
-  useEffect(() => { 
-    setSelected({ id: undefined, target: undefined }) 
+  useEffect(() => {
+    setSelected({ id: undefined, target: undefined })
     setPage(0)
   }, [props]);
 
@@ -102,14 +101,14 @@ export default function EnhancedTable(props) {
     if (isRepeat) {
       selected.target.classList.remove('rowChanged')
       setSelected(newSelect)
-      dispatch({type:"SET_TARGET_ID",id:undefined})
+      dispatch({ type: "SET_TARGET_ID", id: undefined })
     } else {
       selected.target && selected.target.classList.remove('rowChanged')
       newTarget.classList.add('rowChanged')
       newSelect.id = id
       newSelect.target = newTarget
       setSelected(newSelect);
-      dispatch({type:"SET_TARGET_ID",id})
+      dispatch({ type: "SET_TARGET_ID", id })
     }
   };
 

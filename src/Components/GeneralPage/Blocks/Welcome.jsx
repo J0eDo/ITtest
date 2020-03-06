@@ -1,5 +1,7 @@
 import React from 'react'
+//Content
 import imageProger from '../../../Content/img/programmer.jpg'
+//Material UI
 import Paper from '@material-ui/core/Paper'
 
 export default function Welcome() {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
+//Material UI
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
-import { Selects } from '../../../Style/elements'
-import { getDataWithFilter } from '../../../API/adminisrator'
 import SearchIcon from '@material-ui/icons/Search';
 import YoutubeSearchedForIcon from '@material-ui/icons/YoutubeSearchedFor';
-
+//Components
+import { Selects } from '../../../Style/elements'
+import { getDataWithFilter } from '../../../API/adminisrator'
 
 function FilterForm(data) {
     const [dataType, setDataType] = useState(data.selectItems[0])

@@ -1,7 +1,6 @@
 import {
     axios,
-    GET_TEST_LIST,
-    GET_THE_TEST
+    GET_TEST_LIST, GET_THE_TEST
 } from './Axios'
 
 export const getTestBtns = async () => {

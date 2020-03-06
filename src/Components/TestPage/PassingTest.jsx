@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { getTestTask } from '../../API/passingTheTest'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
+//API
+import { getTestTask } from '../../API/passingTheTest'
+//Material UI
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
+//Components
 import TheTask from '../TheTask/TheTask'
 
 export default function PassingTest() {
@@ -25,7 +28,7 @@ export default function PassingTest() {
 
     useEffect(() => {
         getTest()
-    },[])
+    }, [])
 
     const testInfo = () => (
         <div>

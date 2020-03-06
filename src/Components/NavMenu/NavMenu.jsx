@@ -1,8 +1,8 @@
-//Libarys
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { NavLink } from "react-router-dom";
+import './navMenu.scss'
 //API
 import { getUserData } from '../../API/profile'
 //UI
@@ -15,12 +15,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { MenuBadge } from '../../Style/elements'
-import './navMenu.scss'
 import LoginIcon from '@material-ui/icons/ExitToApp';
 import Fade from '@material-ui/core/Fade';
+import { Button, Badge } from '@material-ui/core';
 //Components
 import AuthPanel from '../AuthorizationPanel'
-import { Button, Badge } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({

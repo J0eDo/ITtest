@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-//UI
+import './style.scss'
+//Material UI
 import { makeStyles } from '@material-ui/core/styles'
 import { theTestBtn } from '../../Style/elements'
 import Paper from '@material-ui/core/Paper';
+//API
 import { getTestBtns } from '../../API/passingTheTest'
 import { downloadPicture } from '../../API/fileAPI'
-import './style.scss'
-//Component
+
 
 const useStyles = makeStyles(theme => ({
     root: {

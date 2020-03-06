@@ -1,36 +1,30 @@
 import {
     axios,
-    GET_DATA_BY_NAME,
-    BANED_UNBANED,
-    REMOVE_USER,
-    REMOVE_DATA_BY_ID,
-    dataBaseNameOnServer,
-    errorServer
+    GET_DATA_BY_NAME, BANED_UNBANED,
+    REMOVE_USER, REMOVE_DATA_BY_ID,
+    dataBaseNameOnServer, errorServer
 } from './Axios'
 import qs from 'querystring'
 
 export let getDataWithFilter = dispatch => data => {
-    const getData = () => {
-        data.dataBaseName = dataBaseNameOnServer[data.dataBaseName]
-        let fields = qs.stringify(data.fields)
-        axios.get(GET_DATA_BY_NAME, {
-            params: {
-                ...data,
-                fields
+    data.dataBaseName = dataBaseNameOnServer[data.dataBaseName]
+    let fields = qs.stringify(data.fields)
+    axios.get(GET_DATA_BY_NAME, {
+        params: {
+            ...data,
+            fields
+        }
+    })
+        .then((response) => {
+            if (response.data.message) {
+                dispatch({ type: "ADD_NOTIFICATION", message: data.message })
+            } else {
+                dispatch({ type: "SET_TABLE_DATA", tableData: response.data, table: data.dataBaseName })
             }
         })
-            .then((response) => {
-                if (response.data.message) {
-                    dispatch({ type: "ADD_NOTIFICATION", message: data.message })
-                } else {
-                    dispatch({ type: "SET_TABLE_DATA", tableData: response.data, table: data.dataBaseName })
-                }
-            })
-            .catch((error) => {
+        .catch((error) => {
 
-            })
-    }
-    getData()
+        })
 }
 
 export let userBaned = (id, dispatch) => {

@@ -4,7 +4,6 @@ function createFormatUser(id, column2, column3, column4, column5) {
     return { id, column2, column3, column4, column5 };
 }
 
-
 export const formatTable = store => next => action => {
     switch (action.type) {
         case "SET_TABLE_DATA":

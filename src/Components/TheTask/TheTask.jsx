@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux'
 
 export default function TheTask({ task }) {
     const dispatch = useDispatch()
-
     useEffect(() => {
         task && dispatch({ type: 'SET_THE_TASK', theTask: task.body })
     }, [task, dispatch])

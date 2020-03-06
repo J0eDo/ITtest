@@ -1,9 +1,11 @@
 import React from 'react'
+import './style.scss'
+//Components
+import { InfoCard } from '../../Style/elements'
 import ServerPanel from './ServerPanel/ServerPanel'
 import RequestBody from './Request/RequestBody'
 import TableConteiner from './DataTable/TableConteiner'
-import { InfoCard } from '../../Style/elements'
-import './style.scss'
+
 export default function index() {
     return (
         <div>

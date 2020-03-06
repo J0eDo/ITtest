@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import './style.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { taskTypes } from './TaskConstructorSetting'
 import { useParams, useHistory } from 'react-router-dom'
+//API
 import { getTask } from '../../API/taskConstructor'
 import { removeDataByID } from '../../API/adminisrator'
-//UI
-import Button from '@material-ui/core/Button'
-import { Selects } from '../../Style/elements'
 import { saveTask } from '../../API/taskConstructor'
-
+//Until
+import { taskTypes } from './TaskConstructorSetting'
+//Material UI
+import Button from '@material-ui/core/Button'
+//Components
+import { Selects } from '../../Style/elements'
 import { dialogWindow } from '../DialogWindow/Dialogs'
-
 
 export default function TestConstructorSetting(props) {
     const [theTaskType, setTheTaskType] = useState(taskTypes[0])

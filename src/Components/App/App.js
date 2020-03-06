@@ -2,13 +2,13 @@
 import React from 'react'
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
+    Switch,Route
 } from "react-router-dom"
+import './app.scss'
 //UI
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../../Style/theme'
-import './app.scss'
+
 //Components
 import NavMenu from '../NavMenu/NavMenu'
 import GeneralPage from '../GeneralPage/GeneralPage'

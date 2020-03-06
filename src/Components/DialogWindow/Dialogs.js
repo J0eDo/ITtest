@@ -1,7 +1,10 @@
 import React from 'react'
 import { createPortal } from 'react-dom'
+//Until
 import { actions as actionsTable } from '../Admin/DataTable/ModeTable'
+//API
 import { userBaned, userRemove, removeDataByID } from '../../API/adminisrator'
+//Components
 import DialogWindow from './DialogWindow'
 
 export const dialogWindow = (openState, setOpenState, data) => {

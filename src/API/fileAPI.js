@@ -1,16 +1,15 @@
 import {
     axios,
-    POST_FILE,
-    GET_IMG,
+    POST_FILE, GET_IMG,
 } from './Axios'
 
 
-export const downloadPicture = async (handler,pathFile, fileName) => {
+export const downloadPicture = async (handler, pathFile, fileName) => {
     return axios.get(GET_IMG, { params: { pathFile, fileName } })
         .then((response) => {
             handler(response.data.file);
-        }).catch(()=>console.log('WTF man -_-?'))
-        
+        }).catch(() => console.log('WTF man -_-?'))
+
 }
 
 
