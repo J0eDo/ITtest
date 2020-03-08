@@ -10,6 +10,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../../Style/theme'
 
 //Components
+import Menu from '../NavMenu/Menu'
 import NavMenu from '../NavMenu/NavMenu'
 import GeneralPage from '../GeneralPage/GeneralPage'
 import Profile from '../Profile/Profile'
@@ -25,10 +26,10 @@ import ResultPage from '../ResultPage/ResultPage'
 
 
 function App() {
-    return (<ThemeProvider theme={theme}>
+    return (<ThemeProvider theme={theme}  className="app">
         <Router >
-            <NavMenu />
-            <main className="app">
+            <Menu />
+            <main>
                 <Switch>
                     <Route exact path="/" component={GeneralPage} />
                     <Route path="/tests" component={TestsList} />

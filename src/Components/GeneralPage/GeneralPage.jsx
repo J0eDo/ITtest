@@ -14,7 +14,7 @@ function GeneralPage() {
             <div className="generalPage_conteiner">
                 <Welcome />
                 <UserConstructorTask />
-                <NewTest />
+             {/*    <NewTest /> */}
             </div>
         </div>
     );

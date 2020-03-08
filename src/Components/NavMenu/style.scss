@@ -1,0 +1,15 @@
+.drawerMenu {
+    min-width: 300px;
+}
+
+.drawerMenu_head {
+    height          : 200px;
+    width           : 250px;
+    background-color: yellow;
+
+    img {
+        height            : 200px;
+        width             : 250px;
+        filter: blur(1px);
+    }
+}
