@@ -1,0 +1,90 @@
+ .panelSetting {
+     position        : absolute;
+     bottom          : 13vh;
+     width           : 96%;
+     border          : 1px solid gold;
+     margin-left     : 2%;
+     background-color: white;
+     z-index         : 10;
+     border-radius   : 5px 5px 0 0;
+     display         : flex;
+     flex-flow       : column wrap;
+     justify-content : stretch;
+
+     .formSetting {
+         width      : 100%;
+
+         .formSetting_elem {
+             margin-left: 1rem;
+             width           : 300px;
+             display         : flex;
+             flex-flow       : row nowrap;
+
+             .panelSetting__inlineElement {
+                 display: inline-block;
+                 margin : auto 1rem;
+             }
+         }
+
+     }
+
+     .tegs-area {
+         min-height          : 4vh;
+         background-color: rgba(165, 42, 42, 0.705);
+         min-width       : 90%;
+         margin          : .5rem auto .5rem;
+         border-radius   : 5px;
+        .tegs-area__message{
+            text-align: center;
+            margin: auto;
+            background-color: chartreuse;
+        }
+     }
+ }
+
+ .panelSetting-enter {
+     height : 0;
+     opacity: 0;
+ }
+
+ .panelSetting-enter-active {
+     height            : 50vh;
+     opacity           : 1;
+     transition        : opacity 500ms, height 500ms;
+     -webkit-transition: opacity 500ms, height 500ms;
+ }
+
+ .panelSetting-enter-done {
+     height: 50vh;
+ }
+
+
+ .panelSetting-exit {
+     height : 50vh;
+     opacity: 1;
+ }
+
+ .panelSetting-exit-active {
+     height        : 0;
+     opacity           : 0;
+     transition        : opacity 500ms, height 500ms;
+     -webkit-transition: opacity 500ms, height 500ms;
+ }
+
+ .panelSetting-exit-done {
+     height : 0vh;
+     opacity: 0;
+ }
+
+ .panelSetting_conteiner {
+     font-size: 15rem;
+     color    : red;
+
+     .formSetting {
+         p {
+             font-size: 15rem;
+         }
+     }
+
+  
+ }

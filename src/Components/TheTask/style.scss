@@ -1,40 +1,52 @@
 .theTastText {
-  text-align: center;
-  background-color: rgb(48, 78, 177);
-  border-radius: 5px;
-  margin: auto;
-  padding: 3rem 1rem;
+  text-align      : center;
+  background-color: rgb(156, 160, 170);
+  border-radius   : 5px;
+  margin          : auto;
+  padding         : 3rem 1rem;
+  color           : rgb(34, 36, 22);
 }
 
 .variantLI {
-  cursor: pointer;
-  background-color: rgb(109, 139, 163);
-  border-radius: 5px;
+  font-size          : 1.4rem;
+  margin             : .5rem auto;
+  width              : 90%;
+  background-color   : rgba(152, 121, 211, 0.603);
   list-style-position: inside;
-  margin: 1rem auto;
-  padding: 1rem;
-  width: 90%;
-  font-weight: 300;
-  font-size: 100%;
+  padding            : .5rem;
+  border-radius      : 10px;
+
 }
 
 .variantLI_select {
-    animation:.4s linear 0s selectON;
-    font-weight: 600;
-    color: black;
+  animation       : .4s linear 0s selectON;
+  color           : black;
+  background-color: rgba(61, 116, 197, 0.548);
+  border          : 1px solid green;
+
+}
+
+.variants {
+  height     : 60vw;
+  display    : flex;
+  flex-flow  : column nowrap;
+  align-items: baseline;
 }
 
 @keyframes selectON {
-  0%{
+  0% {
     font-weight: 100;
-    color: black;
+    color      : black;
   }
-  50%{
-    font-weight: 200;
-    color: white;
+
+  50% {
+    font-weight     : 200;
+    color           : white;
+    background-color: rgb(152, 121, 211);
   }
+
   100% {
-    font-weight: 600;
-    color: black;
+    font-weight: 100;
+    color      : black;
   }
 }

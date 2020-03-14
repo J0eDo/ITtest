@@ -19,7 +19,11 @@ export default function RequestBody() {
     return (
         <div>
             <div className="rb_option">
-                <p>DataType:</p> {Selects(selectProps)}
+                <p>DataType:</p> {Selects({
+                    items:dataNames,
+                    defaultValue:dataNames[0],
+                    setDataHandler
+                })}
             </div>
             {requestFilterForm(dataType)}
         </div>

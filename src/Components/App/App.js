@@ -11,7 +11,6 @@ import theme from '../../Style/theme'
 
 //Components
 import Menu from '../NavMenu/Menu'
-import NavMenu from '../NavMenu/NavMenu'
 import GeneralPage from '../GeneralPage/GeneralPage'
 import Profile from '../Profile/Profile'
 import TestsList from '../TestPage/TestsList'
@@ -26,7 +25,7 @@ import ResultPage from '../ResultPage/ResultPage'
 
 
 function App() {
-    return (<ThemeProvider theme={theme}  className="app">
+    return (<ThemeProvider theme={theme}>
         <Router >
             <Menu />
             <main>

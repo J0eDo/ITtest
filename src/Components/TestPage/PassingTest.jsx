@@ -4,11 +4,17 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 //API
 import { getTestTask } from '../../API/passingTheTest'
+import { downloadPicture } from '../../API/fileAPI'
 //Material UI
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
+import yellow from "@material-ui/core/colors/yellow";
 //Components
 import TheTask from '../TheTask/TheTask'
+
+const yellow100 = yellow["300"];
+
+
 
 export default function PassingTest() {
     const isActiveBtn = useSelector(state => state.theTask.btnNextActive)
@@ -18,22 +24,27 @@ export default function PassingTest() {
     const [test, setTest] = useState(null)
     let [indexTask, setIndexTask] = useState(0)
     const [tasks, setTasks] = useState([])
+    const [poster, setPoster] = useState()
 
     const getTest = async () => {
         const res = await getTestTask(testName)
         setTest(res.test[0])
         setTasks(res.test[0].tasks)
+    }
 
+    const getPoster = async () => {
+        const fileName = 'JS базовый' + '.jpg'
+        await downloadPicture(setPoster, '/tests/img/', 'JS базовый.jpg');
     }
 
     useEffect(() => {
         getTest()
+        getPoster()
     }, [])
 
     const testInfo = () => (
-        <div>
-            <p>{testName}</p>
-            <p>{indexTask + 1}/{tasks.length}</p>
+        <div className='testInfo'>
+            {indexTask + 1}/{tasks.length}
         </div>)
 
     const next = () => {
@@ -47,11 +58,12 @@ export default function PassingTest() {
     }
 
     return (
-        <div>
+        <div className='fullMode'>
             <Paper className='theTest_conteiner'>
                 {tasks && <TheTask task={tasks[indexTask]} />}
             </Paper>
-            <Paper className='remotePanel'>
+            <Paper className='remotePanel' style={{backgroundColor:yellow100}}>
+                <img className='testList_BG' src={poster && 'data:image/gif;base64,' + poster} alt="a" />
                 {test && testInfo()}
                 <Button
                     disabled={!isActiveBtn}
@@ -59,7 +71,7 @@ export default function PassingTest() {
                     onClick={next}
                     variant='contained'
                     color='primary'
-                >Next</Button>
+                >Ок</Button>
             </Paper>
         </div>
     )

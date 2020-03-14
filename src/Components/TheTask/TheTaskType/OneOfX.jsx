@@ -69,7 +69,7 @@ export default function OneOfX() {
         theTask ? (
             <div>
                 <div className="theTastText">{theTask.task[0]}</div>
-                <ol type="A">
+                <ol type="A" className='variants'>
                     {variants.map((element, index) => (
                         <li
                             index={index}

@@ -2,18 +2,22 @@
     display  : flex;
     flex-flow: row nowrap;
     margin   : auto;
+
     .tableConteiner {
-        .changedRow{
+        .changedRow {
             background-color: yellow;
         }
+
         margin          : auto;
         flex-grow       : 5;
         height          : 90%;
         background-color: rgb(245, 239, 188);
+
         * {
             margin: auto;
         }
     }
+
     .remote {
         margin          : auto;
         flex-grow       : 1;
@@ -42,32 +46,37 @@
 .downloadBlock {
     margin-bottom: .5rem;
     border-radius: 3px;
-    font-size: 200%;
-    .poster{
+    font-size    : 200%;
+
+    .poster {
         background-size: contain;
-        width: 100px;
-        height: 100px;
-        font-weight:700 ;   
+        width          : 100px;
+        height         : 100px;
+        font-weight    : 700;
     }
-    .bg{
-        width: 200px;
-        height: 50px;
+
+    .bg {
+        width           : 200px;
+        height          : 50px;
         background-color: blue;
     }
+
     * {
-        width : 100%;
-        height: 100%;
+        width     : 100%;
+        height    : 100%;
         text-align: center;
-        margin: auto;
+        margin    : auto;
     }
-    .loadImg{
+
+    .loadImg {
         font-size: small;
-        border: 1px inset black;
-        display: flex;
-        div{
-            height: 2rem;
+        border   : 1px inset black;
+        display  : flex;
+
+        div {
+            height : 2rem;
             display: block;
-            margin: auto;
+            margin : auto;
         }
     }
 }
@@ -76,6 +85,7 @@
     text-align: center;
     display   : flex;
     flex-flow : column nowrap;
+
     * {
         margin-bottom: 1rem;
     }

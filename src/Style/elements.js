@@ -31,16 +31,13 @@ export const SuccessCard = (Component) => (
         <Component />
     </Paper>
 )
-export const Selects = (prop) => (
+export const Selects = ({defaultValue,setDataHandler,items}) => (
     <Select
-        style={{
-            minWidth: '13rem',
-        }}
-        defaultValue={prop.dataType}
-        onChange={prop.setDataHandler}
+        defaultValue={defaultValue}
+        onChange={setDataHandler}
     >
         {
-            prop.items.map(element => (
+            items.map(element => (
                 <MenuItem key={`menuitem-${element}`} value={element}>{element}</MenuItem>
             ))
         }

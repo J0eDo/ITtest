@@ -70,7 +70,11 @@ function FilterForm(data) {
                     />
                 ))}
                 {
-                    Selects(selectProps)
+                    Selects({
+                        defaultValue: data.selectItems[0],
+                        setDataHandler,
+                        items:data.selectItems
+                    })
                 }
             </div>
             <Button variant="outlined" color="primary"

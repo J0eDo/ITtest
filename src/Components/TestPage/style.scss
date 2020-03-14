@@ -1,35 +1,103 @@
-.testList{
-    display: flex;
-    flex-flow: row wrap;
-    height: 100%;
-    width: 100%;
+.testList {
+    display        : flex;
+    flex-flow      : row wrap;
+    height         : 400px;
+    width          : 100%;
+    margin         : auto;
     justify-content: space-around;
-    
-    .theTestBlock{
-        width: 45%;
-        min-width: 400px;
-        margin: .6rem;
+    z-index        : 1;
+    overflow       : hidden;
+
+    .theTestBlock {
+        min-width: 300px;
+        opacity  : .9;
+    }
+
+    .theTestBtnShadow {
+        width     : 80%;
+        margin    : .6rem auto;
+        z-index   : 3;
+        box-shadow: 10px -7px 4px rgba(137, 139, 112, 0.055);
+    }
+
+    .testList_BG {
+        width  : 85%;
+        z-index: 2;
+        left   : 18%;
+        ;
+        position: relative;
+        top     : -246px;
     }
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
-.theTest_conteiner{
-    margin: 0;
+.theTest_conteiner {
+    height : 78vh;
+    margin : 0;
     padding: 1rem;
 }
 
-.remotePanel{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: baseline;
-    *{
-        margin: 1rem;
+.remotePanel {
+    display         : flex;
+    flex-flow       : row wrap;
+    justify-content : space-between;
+    align-items     : center;
+    height          : 12vh;
+    
+    .remotePanel_btn {
+        margin         : .5rem;
+        z-index        : 12;
+        display        : flex;
+        flex-flow      : row nowrap;
+        justify-content: center;
+        align-items    : center;
     }
-    .remotePanel_btn{
-        margin: 1rem;
+
+    img {
+        height     : 10vh;
+        margin-left: .5rem;
+        filter     : sepia(.4);
+        border     : 1px solid black;
     }
+
+    .testInfo {
+        width           : 4rem;
+        text-align      : center;
+        font-size       : 1.2rem;
+        background-color: #ffca28;
+        border          : 1px solid black;
+        padding         : -1vh;
+        font-weight     : 700;
+        color           : rgb(25, 26, 24);
+    }
+}
+
+
+.testList_carousel {
+    max-width : 200px;
+    max-height: 200px;
+    margin    : auto;
+
+
+}
+
+.testList_carousel__conteiner {
+    text-align      : center;
+    width           : 100%;
+    padding         : 1rem 0 3rem 0;
+    background-color: rgb(247, 255, 244);
+
+    h3 {
+        margin: 0 0 .5rem 0;
+    }
+}
+
+.fullMode {
+    margin          : -1rem 0 -.5rem 0;
+    background-color: chartreuse;
+    height          : 90vh;
+
 }

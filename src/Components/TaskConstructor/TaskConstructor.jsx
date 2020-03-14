@@ -1,7 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import './style.scss'
 //Until
 import { taskTypes } from './TaskConstructorSetting'
+//Material UI
+import Paper from '@material-ui/core/Paper'
 //Components
 import { InfoCard } from '../../Style/elements'
 import RemoteConstructor from './RemoteConstructor'
@@ -17,25 +20,27 @@ export default function TaskConstructor() {
     let taskTypeNow = useSelector(state => state.theTask.taskType)
     const preview = useSelector(state => state.theTask.preview)
 
-    let constructorMode
-    let previewMode
+    let ConstructorMode
+    let PreviewMode
     switch (taskTypeNow) {
         case taskTypes[0]:
-            constructorMode = ConstructOneOfX
-            previewMode = OneOfX
+            ConstructorMode = ConstructOneOfX
+            PreviewMode = OneOfX
             break;
         case taskTypes[1]:
-            constructorMode = ConstructDnD
-            previewMode = DnD
+            ConstructorMode = ConstructDnD
+            PreviewMode = DnD
             break;
         default:
             break;
     }
 
     return (
-        <div>
-            {preview?InfoCard(previewMode):InfoCard(constructorMode)}
-            {InfoCard(RemoteConstructor)}
+        <div className='fullMode'>
+            <Paper className='theTest_conteiner'>
+                {preview ? <PreviewMode /> : <ConstructorMode />}
+            </Paper>  
+            <RemoteConstructor />
         </div>
     )
 }
