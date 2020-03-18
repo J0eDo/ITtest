@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import '../style.scss'
+import './style.scss'
 //Material UI
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -16,9 +16,20 @@ const useStyles = makeStyles(theme => ({
             width: '100%',
         },
         '& .MuiButton-root': {
-            margin: theme.spacing(2)
+            margin: theme.spacing(0)
         },
     },
+    taskText: {
+        backgroundColor: '#8f919d',
+        color: '#999999'
+    },
+    variant: {
+        backgroundColor: '#dbe6e5',
+    },
+    wrong: {
+        backgroundColor: '#89f1b6'
+    }
+
 }));
 
 
@@ -54,7 +65,7 @@ export default function ConstructOneOfX() {
         };
     }, [])
 
-   
+
 
 
     const addVariant = () => {
@@ -85,7 +96,7 @@ export default function ConstructOneOfX() {
             <div className="rowVariant" key={keysInput[index]}>
                 {buttonsConstructor(index, keysInput)}
                 <TextField
-                    className={classes.root}
+                    className={classes.variant}
                     onChange={e => changeValues(e, index, null, 'wrongs')}
                     defaultValue={bodyValues.wrongs[index]}
                     label={`Неверный${index + 1}`}
@@ -98,7 +109,7 @@ export default function ConstructOneOfX() {
     const buttonsConstructor = (index, variants) => {
         if (index === variants.length - 1 && index !== 4 && index !== 0) {
             return (
-                <ButtonGroup>
+                <ButtonGroup orientation='vertical'>
                     <Button
                         style={{
                             margin: 'auto 0',
@@ -152,7 +163,7 @@ export default function ConstructOneOfX() {
         <div>
             <form className={classes.root} noValidate autoComplete="off">
                 <TextField
-                    className={classes.root}
+                    className={classes.taskText}
                     onChange={(e) => changeValues(e, 0, null, 'task')}
                     defaultValue={bodyValues.task}
                     label="Задание"
@@ -160,18 +171,21 @@ export default function ConstructOneOfX() {
                     rows="5"
                     variant="filled"
                 />
-                <TextField
-                    className={classes.root}
-                    onChange={(e) => changeValues(e, 0, null, 'correct')}
-                    defaultValue={bodyValues.correct}
-                    label={`Верный`}
-                    multiline
-                    rows="2"
-                    variant="filled"
-                />
-                {
-                    keysInput.map((element, index, array) => wronge(index))
-                }
+                <div className='variants_conteiner'>
+                    <TextField
+                        className={classes.wrong}
+                        onChange={(e) => changeValues(e, 0, null, 'correct')}
+                        defaultValue={bodyValues.correct}
+                        label={`Верный`}
+                        multiline
+                        rows="2"
+                        variant="filled"
+                    />
+
+                    {
+                        keysInput.map((element, index, array) => wronge(index))
+                    }
+                </div>
             </form>
         </div>
     )

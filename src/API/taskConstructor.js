@@ -1,16 +1,14 @@
 import {
     axios, errorServer,
-    SAVE_TASK, TASK
+    SAVE_TASK, TASK,
+    TASK_GLOBAL_PARAMS
 } from './Axios'
 
 
-
-
-export const saveTask = (dispatch, taskBody, id, type) => {
+export const saveTask = (dispatch, taskBody,meta) => {
     taskBody = JSON.stringify(taskBody)
-    id = parseInt(id)
     axios.get(SAVE_TASK, {
-        params: { taskBody, id ,type}
+        params: { taskBody,meta }
     })
         .then((response) => {
             const message = response.data.message
@@ -33,10 +31,17 @@ export const getTask = (dispatch, id) => {
             if (response.data.message) {
                 dispatch({ type: "ADD_NOTIFICATION", message: response.data.message })
             } else {
-                dispatch({ type: "SET_THE_TASK", theTask: response.data.task.body,server:true })
+                dispatch({ type: "SET_THE_TASK", theTask: response.data.task.body, server: true })
             }
         })
         .catch(() => {
             errorServer(dispatch)
         })
+}
+
+export const getGlobalTaskParams = async () => {
+    let res = await axios.get(TASK_GLOBAL_PARAMS)
+    return res.data
+
+
 }

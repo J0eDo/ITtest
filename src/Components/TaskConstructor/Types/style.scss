@@ -1,0 +1,10 @@
+.rowVariant{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.variants_conteiner{
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 53vh;
+}

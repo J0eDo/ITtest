@@ -52,6 +52,7 @@ export const GET_TEST = '/getTest'
 export const GET_FREE_TASK = '/freeTasks'
 export const ATTACH_TASK = '/attachTask'
 export const DETACH_TASK = '/dettachTask'
+export const TASK_GLOBAL_PARAMS = '/tasksGlobalParams'
 //Passing the test
 export const GET_TEST_LIST = '/getTestList'
 export const GET_THE_TEST = '/getTheTest'

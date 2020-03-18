@@ -31,10 +31,11 @@ export const SuccessCard = (Component) => (
         <Component />
     </Paper>
 )
-export const Selects = ({defaultValue,setDataHandler,items}) => (
+export const Selects = ({defaultValue,setDataHandler,items,style}) => (
     <Select
         defaultValue={defaultValue}
         onChange={setDataHandler}
+        style={style}
     >
         {
             items.map(element => (

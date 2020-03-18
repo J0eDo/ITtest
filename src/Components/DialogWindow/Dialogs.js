@@ -50,7 +50,11 @@ export default function (action) {
                     removeDataByID(dispatch, id, dataName)
                 }
             }
-
+        case 'CHANGE_TASK_TYPE_CONSTRUCTOR':
+            return {
+                title: "Данные могут быть утеряны!",
+                body: (id) => `Вы уверены что хотите сменить тип задания?`,
+            }
         default:
             break;
     }

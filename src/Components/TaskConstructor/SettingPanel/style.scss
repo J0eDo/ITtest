@@ -2,14 +2,14 @@
      position        : absolute;
      bottom          : 13vh;
      width           : 96%;
-     border          : 1px solid gold;
+     border          : 1px solid rgba(16, 16, 255, 0.589);
      margin-left     : 2%;
      background-color: white;
      z-index         : 10;
      border-radius   : 5px 5px 0 0;
      display         : flex;
      flex-flow       : column wrap;
-     justify-content : stretch;
+    justify-content: stretch;
 
      .formSetting {
          width      : 100%;
@@ -22,14 +22,15 @@
 
              .panelSetting__inlineElement {
                  display: inline-block;
-                 margin : auto 1rem;
+                 margin : auto auto;
              }
          }
+   
 
      }
 
      .tegs-area {
-         min-height          : 4vh;
+         min-height          : 15vh;
          background-color: rgba(165, 42, 42, 0.705);
          min-width       : 90%;
          margin          : .5rem auto .5rem;
@@ -37,7 +38,6 @@
         .tegs-area__message{
             text-align: center;
             margin: auto;
-            background-color: chartreuse;
         }
      }
  }
@@ -87,4 +87,8 @@
      }
 
   
+ }
+
+ .panelSetting_delete{
+    margin:0 auto;
  }

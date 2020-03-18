@@ -13,6 +13,9 @@ const constructorTheTask = (state, action) => {
         case "SET_THE_TASK":
             newState.theTask = JSON.parse(JSON.stringify(action.theTask))
             return newState
+        case "SET_THE_TASK_TEST":
+            newState.theTaskTestName = action.theTaskTestName
+            return newState
         case "PREVIEW":
             newState.preview = action.preview
             return newState
@@ -36,6 +39,7 @@ const constructorTheTask = (state, action) => {
             newState.preview = false
             newState.resultTest = resultTest
             newState.correctlyAnswer = 0
+            newState.theTaskTestName = ''
             return newState
     }
 }
